@@ -1,0 +1,7 @@
+# Git Ignore for Police Crime Portal
+# Exclude raw 180MB zip and unzipped raw excel files to adhere to GitHub 100MB file limit
+*.zip
+extracted_data/
+web_app/
+__pycache__/
+*.pyc

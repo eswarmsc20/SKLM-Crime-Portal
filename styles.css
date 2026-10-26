@@ -1,0 +1,156 @@
+/* Andhra Pradesh Police & Srikakulam District Police Portal Styling */
+:root {
+  --ap-navy-900: #071326;
+  --ap-navy-800: #0c1e3d;
+  --ap-navy-700: #132a54;
+  --ap-gold-500: #d4af37;
+  --ap-gold-400: #f5d76e;
+  --ap-gold-600: #aa861c;
+  --ap-crimson: #c0392b;
+  --ap-emerald: #27ae60;
+  --ap-slate-100: #f8fafc;
+  --ap-slate-200: #e2e8f0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #081220;
+  color: #f1f5f9;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Police Theme Accents */
+.border-gold {
+  border-color: #d4af37;
+}
+
+.text-gold {
+  color: #ffd700;
+}
+
+.bg-police-navy {
+  background-color: #0c1e3d;
+}
+
+.bg-police-dark {
+  background-color: #071326;
+}
+
+.bg-police-card {
+  background-color: #0f244a;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.bg-police-card:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+}
+
+/* Navigation tabs */
+.nav-tab-btn {
+  transition: all 0.2s ease-in-out;
+  border-bottom: 3px solid transparent;
+}
+
+.nav-tab-btn.active {
+  background-color: #163264;
+  color: #ffd700;
+  border-bottom-color: #ffd700;
+}
+
+/* Badges */
+.badge-grave {
+  background-color: rgba(220, 38, 38, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(220, 38, 38, 0.4);
+}
+
+.badge-nongrave {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.badge-timeline-old {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  font-weight: 600;
+}
+
+.badge-timeline-recent {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #081220;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e3a6c;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* Presentation Mode / Fullscreen */
+body.presentation-mode {
+  font-size: 1.15rem;
+}
+
+body.presentation-mode .container {
+  max-width: 100% !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+/* Print Stylesheet for Official Reports */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    font-size: 11pt;
+  }
+
+  header, nav, #loginSection, .no-print, .btn, button, input, select {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .bg-police-card, .bg-police-navy, .bg-police-dark {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: none !important;
+  }
+
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  th, td {
+    border: 1px solid #9ca3af !important;
+    color: #111827 !important;
+    padding: 6px 10px !important;
+  }
+
+  th {
+    background-color: #f3f4f6 !important;
+  }
+}

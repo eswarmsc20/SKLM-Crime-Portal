@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="shieldGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe680"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#997a15"/>
+    </linearGradient>
+    <linearGradient id="policeNavy" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#142c54"/>
+      <stop offset="100%" stop-color="#0a172c"/>
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Shield Shadow & Base -->
+  <path d="M150 15 L260 55 C260 165 210 240 150 285 C90 240 40 165 40 55 Z" 
+        fill="url(#shieldGold)" filter="url(#dropShadow)" stroke="#b89320" stroke-width="3"/>
+
+  <!-- Inner Navy Shield -->
+  <path d="M150 25 L248 60 C248 160 202 230 150 272 C98 230 52 160 52 60 Z" 
+        fill="url(#policeNavy)" stroke="#ffe680" stroke-width="2"/>
+
+  <!-- Inner Concentric Ring -->
+  <circle cx="150" cy="135" r="70" fill="#0c1d38" stroke="url(#shieldGold)" stroke-width="4"/>
+  <circle cx="150" cy="135" r="62" fill="none" stroke="#ffe680" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- Decorative Laurel Wreath Left -->
+  <path d="M 92 135 C 92 170 115 195 145 200 C 135 190 125 175 125 155 C 125 140 115 130 92 135 Z" fill="#d4af37" opacity="0.8"/>
+  <path d="M 85 105 C 80 125 85 150 100 170 C 95 150 95 130 92 110 Z" fill="#d4af37" opacity="0.7"/>
+
+  <!-- Decorative Laurel Wreath Right -->
+  <path d="M 208 135 C 208 170 185 195 155 200 C 165 190 175 175 175 155 C 175 140 185 130 208 135 Z" fill="#d4af37" opacity="0.8"/>
+  <path d="M 215 105 C 220 125 215 150 200 170 C 205 150 205 130 208 110 Z" fill="#d4af37" opacity="0.7"/>
+
+  <!-- Five Point Stars -->
+  <polygon points="150,75 153,84 163,84 155,90 158,99 150,93 142,99 145,90 137,84 147,84" fill="#ffd700"/>
+  <polygon points="105,95 107,101 114,101 108,105 110,111 105,107 100,111 102,105 96,101 103,101" fill="#ffd700"/>
+  <polygon points="195,95 197,101 204,101 198,105 200,111 195,107 190,111 192,105 186,101 193,101" fill="#ffd700"/>
+
+  <!-- Lion Capital / Emblem representation -->
+  <!-- Base Pedestal -->
+  <rect x="130" y="152" width="40" height="6" rx="2" fill="url(#shieldGold)"/>
+  <circle cx="150" cy="155" r="2.5" fill="#142c54"/>
+  <rect x="135" y="158" width="30" height="4" rx="1" fill="#ffe680"/>
+
+  <!-- Central Lion -->
+  <path d="M142 120 C142 110 158 110 158 120 C162 125 160 138 158 145 L142 145 C140 138 138 125 142 120 Z" fill="url(#shieldGold)"/>
+  <circle cx="150" cy="118" r="9" fill="url(#shieldGold)"/>
+  <!-- Side Lions -->
+  <path d="M132 125 C132 118 142 120 142 130 L140 146 L130 146 C128 140 128 132 132 125 Z" fill="#d4af37"/>
+  <path d="M168 125 C168 118 158 120 158 130 L160 146 L170 146 C172 140 172 132 168 125 Z" fill="#d4af37"/>
+  <circle cx="135" cy="122" r="6" fill="#d4af37"/>
+  <circle cx="165" cy="122" r="6" fill="#d4af37"/>
+
+  <!-- Circular Text Path: ANDHRA PRADESH POLICE -->
+  <path id="textArcTop" d="M 85 135 A 65 65 0 0 1 215 135" fill="none"/>
+  <text font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="900" fill="#ffd700" letter-spacing="2">
+    <textPath href="#textArcTop" startOffset="50%" text-anchor="middle">ANDHRA PRADESH</textPath>
+  </text>
+
+  <path id="textArcBottom" d="M 215 135 A 65 65 0 0 1 85 135" fill="none"/>
+  <text font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="900" fill="#ffffff" letter-spacing="3">
+    <textPath href="#textArcBottom" startOffset="50%" text-anchor="middle">POLICE</textPath>
+  </text>
+
+  <!-- Telugu Motto Banner at Bottom -->
+  <path d="M 80 230 Q 150 252 220 230 L 225 244 Q 150 268 75 244 Z" fill="url(#shieldGold)" stroke="#b89320" stroke-width="1.5"/>
+  <text x="150" y="244" font-family="'Segoe UI', Roboto, 'Gautami', 'Nirmala UI', sans-serif" font-size="9" font-weight="bold" fill="#0d2040" text-anchor="middle">
+    సత్యమేవ జయతే
+  </text>
+  <text x="150" y="259" font-family="'Segoe UI', Roboto, 'Gautami', 'Nirmala UI', sans-serif" font-size="8" font-weight="bold" fill="#ffd700" text-anchor="middle">
+    రక్షణ • సమగ్రత • సేవ
+  </text>
+</svg>

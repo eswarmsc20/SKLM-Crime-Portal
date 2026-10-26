@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sklmGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff2a3"/>
+      <stop offset="45%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8a6d1b"/>
+    </linearGradient>
+    <linearGradient id="sklmNavy" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#12284c"/>
+      <stop offset="100%" stop-color="#081426"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffea75"/>
+      <stop offset="70%" stop-color="#e67e22"/>
+      <stop offset="100%" stop-color="#d35400"/>
+    </radialGradient>
+    <filter id="badgeShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Star Burst Points -->
+  <g fill="url(#sklmGold)" filter="url(#badgeShadow)">
+    <polygon points="150,12 188,38 234,42 248,86 280,118 266,162 278,206 244,236 230,280 186,276 150,300 114,276 70,280 56,236 22,206 34,162 20,118 52,86 66,42 112,38"/>
+  </g>
+
+  <!-- Deep Blue Inner Star Body -->
+  <g fill="url(#sklmNavy)" stroke="#ffd700" stroke-width="2.5">
+    <polygon points="150,24 182,46 222,50 234,88 262,116 250,154 260,192 230,218 218,256 180,252 150,274 120,252 82,256 70,218 40,192 50,154 38,116 66,88 78,50 118,46"/>
+  </g>
+
+  <!-- Gold Ring -->
+  <circle cx="150" cy="148" r="74" fill="#0d1f3b" stroke="url(#sklmGold)" stroke-width="4.5"/>
+  <circle cx="150" cy="148" r="67" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+
+  <!-- Srikakulam Sun / Arasavalli Surya Rays Motif inside center -->
+  <g transform="translate(150,132)">
+    <!-- 16 Sun rays -->
+    <g fill="#ffc107" opacity="0.9">
+      <rect x="-2" y="-36" width="4" height="12" rx="1"/>
+      <rect x="-2" y="24" width="4" height="12" rx="1"/>
+      <rect x="-36" y="-2" width="12" height="4" rx="1"/>
+      <rect x="24" y="-2" width="12" height="4" rx="1"/>
+      
+      <rect x="-2" y="-36" width="4" height="12" rx="1" transform="rotate(45)"/>
+      <rect x="-2" y="24" width="4" height="12" rx="1" transform="rotate(45)"/>
+      <rect x="-36" y="-2" width="12" height="4" rx="1" transform="rotate(45)"/>
+      <rect x="24" y="-2" width="12" height="4" rx="1" transform="rotate(45)"/>
+
+      <rect x="-2" y="-36" width="4" height="12" rx="1" transform="rotate(22.5)"/>
+      <rect x="-2" y="24" width="4" height="12" rx="1" transform="rotate(22.5)"/>
+      <rect x="-36" y="-2" width="12" height="4" rx="1" transform="rotate(22.5)"/>
+      <rect x="24" y="-2" width="12" height="4" rx="1" transform="rotate(22.5)"/>
+
+      <rect x="-2" y="-36" width="4" height="12" rx="1" transform="rotate(67.5)"/>
+      <rect x="-2" y="24" width="4" height="12" rx="1" transform="rotate(67.5)"/>
+      <rect x="-36" y="-2" width="12" height="4" rx="1" transform="rotate(67.5)"/>
+      <rect x="24" y="-2" width="12" height="4" rx="1" transform="rotate(67.5)"/>
+    </g>
+
+    <!-- Glowing Sun Disc -->
+    <circle cx="0" cy="0" r="22" fill="url(#sunGlow)" stroke="#ffd700" stroke-width="2"/>
+
+    <!-- Ashoka Lion Pillar Icon in center of Sun -->
+    <path d="M-6 8 L6 8 L4 -6 L-4 -6 Z" fill="#ffffff" opacity="0.95"/>
+    <circle cx="0" cy="-9" r="5" fill="#ffffff"/>
+    <line x1="-8" y1="8" x2="8" y2="8" stroke="#ffffff" stroke-width="2"/>
+    <line x1="-10" y1="12" x2="10" y2="12" stroke="#ffffff" stroke-width="2"/>
+  </g>
+
+  <!-- Circular Text Arc Top: SRIKAKULAM DISTRICT -->
+  <path id="sklmArcTop" d="M 82 148 A 68 68 0 0 1 218 148" fill="none"/>
+  <text font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="900" fill="#ffd700" letter-spacing="2">
+    <textPath href="#sklmArcTop" startOffset="50%" text-anchor="middle">SRIKAKULAM DISTRICT</textPath>
+  </text>
+
+  <!-- Circular Text Arc Bottom: POLICE • శ్రీకాకుళం -->
+  <path id="sklmArcBottom" d="M 218 148 A 68 68 0 0 1 82 148" fill="none"/>
+  <text font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="900" fill="#ffffff" letter-spacing="2.5">
+    <textPath href="#sklmArcBottom" startOffset="50%" text-anchor="middle">POLICE DEPARTMENT</textPath>
+  </text>
+
+  <!-- Bottom Ribbons & Star -->
+  <polygon points="150,228 153,234 160,234 155,238 157,244 150,240 143,244 145,238 140,234 147,234" fill="#ffd700"/>
+  <polygon points="130,225 132,230 137,230 133,233 135,238 130,235 125,238 127,233 123,230 128,230" fill="#ffd700"/>
+  <polygon points="170,225 172,230 177,230 173,233 175,238 170,235 165,238 167,233 163,230 168,230" fill="#ffd700"/>
+
+  <text x="150" y="258" font-family="'Segoe UI', Roboto, 'Nirmala UI', sans-serif" font-size="9" font-weight="bold" fill="#ffd700" text-anchor="middle">
+    శ్రీకాకుళం జిల్లా పోలీస్
+  </text>
+</svg>
