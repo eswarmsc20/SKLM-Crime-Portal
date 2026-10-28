@@ -44,7 +44,7 @@
       <div class="flex items-center justify-center gap-6 mb-6">
         <img src="assets/ap_police_logo.svg" alt="AP Police" class="w-20 h-20 drop-shadow-md">
         <div class="h-14 w-[1px] bg-gradient-to-b from-transparent via-[#ffd700] to-transparent"></div>
-        <img src="assets/srikakulam_police_logo.svg" alt="Srikakulam Police" class="w-20 h-20 drop-shadow-md">
+        <img src="assets/ap_state_emblem.svg" alt="Government of AP Emblem" class="w-20 h-20 drop-shadow-md">
       </div>
 
       <div class="text-center mb-6">
@@ -101,7 +101,7 @@
   </div>
 
   <!-- ================= TOP APP HEADER (EXACT COMMAND UI STYLE) ================= -->
-  <header class="bg-[#071326] border-b border-slate-800 shadow-xl sticky top-0 z-30">
+  <header class="bg-[#071326] border-b border-slate-200 shadow-xl sticky top-0 z-30">
     <!-- Top Identity Bar -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between">
 
@@ -125,48 +125,45 @@
 
       <!-- Right Crest -->
       <div class="flex items-center space-x-3">
-        <img src="assets/srikakulam_police_logo.svg" alt="Srikakulam Police" class="h-11 w-11 sm:h-13 sm:w-13 drop-shadow">
+        <img src="assets/ap_state_emblem.svg" alt="Government of AP Emblem" class="h-11 w-11 sm:h-13 sm:w-13 drop-shadow">
       </div>
 
     </div>
 
-    <!-- Officer Status & Action Bar (Screenshot Strip) -->
-    <div class="bg-[#0a1b38] border-t border-slate-800/80 px-4 sm:px-8 py-1.5">
-      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs">
-        
+    <!-- Officer Status & Action Bar (Screenshot Match) -->
+    <div class="bg-[#0a1b38] border-t border-slate-800/80 px-4 sm:px-8 py-2">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-3 text-xs">
+
         <!-- Officer Badge -->
-        <div class="flex items-center gap-2">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#10274f] border border-blue-600/50 rounded-full text-slate-200">
-            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="font-bold text-[#ffd700]">Dear Admin</span>
-            <span class="text-slate-400 text-[11px]">(District Police Office HQ)</span>
-          </span>
-          <span id="liveClock" class="hidden lg:inline text-xs font-mono text-amber-300 ml-2">--:--:--</span>
-        </div>
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#10274f] border border-blue-600/50 rounded-full text-slate-200 shadow-sm">
+          <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-bold text-[#ffd700]">Dear Admin</span>
+          <span class="text-slate-400 text-[11px]">(District Police Office HQ)</span>
+        </span>
 
-        <!-- Action Pills: DCRB, Password, Logout -->
-        <div class="flex items-center gap-2">
-          <button onclick="switchTab('ps_dossier')" class="px-3 py-1 bg-[#142e5c] hover:bg-[#1a3a74] text-teal-300 rounded-full border border-teal-600/40 text-[11px] font-semibold flex items-center gap-1 transition">
-            <i class="fa-solid fa-building-shield"></i>
-            <span>DCRB Stations</span>
-          </button>
+        <!-- Cyber Support -->
+        <button onclick="switchTab('ps_dossier')" class="px-3.5 py-1.5 bg-[#0e3b4a] hover:bg-[#155469] text-teal-300 rounded-full border border-teal-500/50 text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
+          <i class="fa-solid fa-headset text-teal-400"></i>
+          <span>Cyber Support</span>
+        </button>
 
-          <button onclick="switchTab('presentation')" class="px-3 py-1 bg-[#142e5c] hover:bg-[#1a3a74] text-amber-300 rounded-full border border-amber-500/40 text-[11px] font-semibold flex items-center gap-1 transition">
-            <i class="fa-solid fa-person-chalkboard"></i>
-            <span>Projector Mode</span>
-          </button>
+        <!-- Password -->
+        <button onclick="alert('Admin credentials managed securely via District Police HQ.')" class="px-3.5 py-1.5 bg-[#142748] hover:bg-[#1c3664] text-amber-200 rounded-full border border-amber-500/40 text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
+          <i class="fa-solid fa-key text-amber-400"></i>
+          <span>Password</span>
+        </button>
 
-          <button onclick="handleLogout()" class="px-3 py-1 bg-red-950/80 hover:bg-red-900 text-red-200 rounded-full border border-red-700 text-[11px] font-semibold flex items-center gap-1 transition shadow">
-            <i class="fa-solid fa-power-off"></i>
-            <span>Logout</span>
-          </button>
-        </div>
+        <!-- Logout -->
+        <button onclick="handleLogout()" class="px-3.5 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-full border border-red-500 text-xs font-bold flex items-center gap-1.5 transition shadow-md">
+          <i class="fa-solid fa-power-off"></i>
+          <span>Logout</span>
+        </button>
 
       </div>
     </div>
 
     <!-- MODULE NAVIGATION TABS (QUICK ACCESS) -->
-    <nav class="bg-[#071326] border-t border-slate-800 overflow-x-auto">
+    <nav id="mainModuleNav" class="bg-[#071326] border-t border-slate-800 overflow-x-auto hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 sm:space-x-1.5 py-1 text-xs">
 
         <!-- Master Overview -->
@@ -283,13 +280,13 @@
 
       <!-- SECTION TITLE: POLICE DEPARTMENT MODULES (MATCHING SCREENSHOT) -->
       <div class="pt-2">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-3 border-b border-slate-800">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-3 border-b border-slate-200">
           <div>
-            <h3 class="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2">
+            <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 flex items-center gap-2">
               <span>🏛️</span>
               <span>Police Department Modules / అందుబాటులో ఉన్న విభాగాలు</span>
             </h3>
-            <p class="text-xs text-slate-400 mt-0.5">
+            <p class="text-xs text-slate-500 mt-0.5">
               Choose an operational module to open head-wise cases, compliance, aging analysis, or analytical records:
             </p>
           </div>
@@ -729,7 +726,7 @@
 
       <!-- ================= MASTER 8 KPI CARDS ================= -->
       <div class="pt-6">
-        <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-800">
+        <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-200">
           <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
             <i class="fa-solid fa-gauge-high text-amber-400"></i>
             <span>District Crime Review Executive Metrics / జిల్లా ప్రధాన సంఖ్యాత్మక సమీక్ష</span>

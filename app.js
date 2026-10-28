@@ -200,6 +200,15 @@ function updateGreeting() {
 function switchTab(tabId) {
   currentTab = tabId;
   window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const nav = document.getElementById('mainModuleNav');
+  if (nav) {
+    if (tabId === 'dashboard') {
+      nav.classList.add('hidden');
+    } else {
+      nav.classList.remove('hidden');
+    }
+  }
   
   // Update nav buttons
   document.querySelectorAll('.nav-tab-btn').forEach(btn => {
