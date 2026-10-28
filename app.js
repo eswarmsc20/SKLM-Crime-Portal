@@ -199,6 +199,7 @@ function updateGreeting() {
 // ================= TAB NAVIGATION =================
 function switchTab(tabId) {
   currentTab = tabId;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   
   // Update nav buttons
   document.querySelectorAll('.nav-tab-btn').forEach(btn => {
