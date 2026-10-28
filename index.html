@@ -32,7 +32,7 @@
     }
   </script>
 </head>
-<body class="bg-[#081220] text-slate-100 min-h-screen flex flex-col">
+<body class="bg-[#081220] text-slate-100 min-h-screen flex flex-col font-sans">
 
   <!-- ================= AUTH / LOGIN OVERLAY ================= -->
   <div id="loginScreen" class="fixed inset-0 z-50 bg-[#060e1a] bg-opacity-95 flex items-center justify-center p-4">
@@ -100,119 +100,143 @@
     </div>
   </div>
 
-  <!-- ================= TOP HEADER ================= -->
-  <header class="bg-[#0c1e3d] border-b-2 border-[#d4af37] shadow-xl sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
-      <div class="flex items-center justify-between">
+  <!-- ================= TOP APP HEADER (EXACT COMMAND UI STYLE) ================= -->
+  <header class="bg-[#071326] border-b border-slate-800 shadow-xl sticky top-0 z-30">
+    <!-- Top Identity Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between">
+
+      <!-- Left Crest -->
+      <div class="flex items-center space-x-3">
+        <img src="assets/ap_police_logo.svg" alt="AP Police" class="h-11 w-11 sm:h-13 sm:w-13 drop-shadow">
+      </div>
+
+      <!-- Center Title with Command Badge -->
+      <div class="text-center px-2">
+        <div class="flex items-center justify-center gap-2 flex-wrap">
+          <span class="text-base sm:text-xl font-extrabold text-white tracking-wider uppercase font-mono">SRIKAKULAM DISTRICT POLICE</span>
+          <span class="px-2.5 py-0.5 text-[10px] sm:text-xs bg-amber-500/20 text-[#ffd700] border border-[#ffd700]/70 rounded-full font-bold uppercase tracking-widest shadow-sm">
+            CRIME REVIEW COMMAND PORTAL
+          </span>
+        </div>
+        <p class="text-xs sm:text-sm text-[#ffd700] font-semibold mt-0.5 tracking-wide">
+          శ్రీకాకుళం జిల్లా పోలీస్ - క్రైమ్ సమీక్ష & రిపోర్టింగ్ వ్యవస్థ
+        </p>
+      </div>
+
+      <!-- Right Crest -->
+      <div class="flex items-center space-x-3">
+        <img src="assets/srikakulam_police_logo.svg" alt="Srikakulam Police" class="h-11 w-11 sm:h-13 sm:w-13 drop-shadow">
+      </div>
+
+    </div>
+
+    <!-- Officer Status & Action Bar (Screenshot Strip) -->
+    <div class="bg-[#0a1b38] border-t border-slate-800/80 px-4 sm:px-8 py-1.5">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs">
         
-        <!-- Logos & Title -->
-        <div class="flex items-center space-x-4">
-          <div class="flex items-center space-x-2">
-            <img src="assets/ap_police_logo.svg" alt="AP Police Crest" class="w-12 h-12 object-contain drop-shadow">
-            <img src="assets/srikakulam_police_logo.svg" alt="Srikakulam Police" class="w-12 h-12 object-contain drop-shadow">
-          </div>
-          <div>
-            <div class="flex items-center space-x-2">
-              <span class="text-xs uppercase tracking-widest text-[#ffd700] font-bold">Andhra Pradesh Police</span>
-              <span class="text-slate-500">•</span>
-              <span class="text-xs text-slate-300">శ్రీకాకుళం జిల్లా</span>
-            </div>
-            <h1 class="text-lg md:text-xl font-extrabold text-white tracking-tight flex items-center gap-2">
-              <span>Superintendent of Police Crime Review Portal</span>
-              <span class="hidden md:inline-block px-2 py-0.5 text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded-full font-mono uppercase">Live Meeting</span>
-            </h1>
-          </div>
+        <!-- Officer Badge -->
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#10274f] border border-blue-600/50 rounded-full text-slate-200">
+            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-bold text-[#ffd700]">Dear Admin</span>
+            <span class="text-slate-400 text-[11px]">(District Police Office HQ)</span>
+          </span>
+          <span id="liveClock" class="hidden lg:inline text-xs font-mono text-amber-300 ml-2">--:--:--</span>
         </div>
 
-        <!-- Controls: Time, Presentation Mode, Officer Profile, Logout -->
-        <div class="flex items-center space-x-3">
-          <!-- Time Badge -->
-          <div class="hidden lg:flex flex-col text-right pr-2">
-            <span id="liveClock" class="text-xs font-mono text-amber-300 font-semibold">--:--:--</span>
-            <span class="text-[11px] text-slate-400">District HQ, Srikakulam</span>
-          </div>
-
-          <!-- Presentation Mode Button -->
-          <button onclick="togglePresentationMode()" title="Toggle SP Screen Projection Mode"
-            class="px-3 py-1.5 text-xs bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-lg text-slate-200 flex items-center gap-1.5 transition">
-            <i class="fa-solid fa-expand text-[#ffd700]"></i>
-            <span class="hidden sm:inline">Projector Mode</span>
+        <!-- Action Pills: DCRB, Password, Logout -->
+        <div class="flex items-center gap-2">
+          <button onclick="switchTab('ps_dossier')" class="px-3 py-1 bg-[#142e5c] hover:bg-[#1a3a74] text-teal-300 rounded-full border border-teal-600/40 text-[11px] font-semibold flex items-center gap-1 transition">
+            <i class="fa-solid fa-building-shield"></i>
+            <span>DCRB Stations</span>
           </button>
 
-          <!-- Export All Summary Button -->
-          <button onclick="exportCurrentViewToExcel()" title="Export Data to Excel"
-            class="px-3 py-1.5 text-xs bg-emerald-900/80 hover:bg-emerald-800 border border-emerald-600 rounded-lg text-emerald-100 flex items-center gap-1.5 transition">
-            <i class="fa-solid fa-file-excel text-emerald-300"></i>
-            <span class="hidden sm:inline">Export Excel</span>
+          <button onclick="switchTab('presentation')" class="px-3 py-1 bg-[#142e5c] hover:bg-[#1a3a74] text-amber-300 rounded-full border border-amber-500/40 text-[11px] font-semibold flex items-center gap-1 transition">
+            <i class="fa-solid fa-person-chalkboard"></i>
+            <span>Projector Mode</span>
           </button>
 
-          <!-- Profile / Logout -->
-          <div class="flex items-center pl-2 border-l border-slate-700 space-x-2">
-            <div class="w-8 h-8 rounded-full bg-[#163264] border border-[#ffd700] flex items-center justify-center text-amber-300 text-xs font-bold" title="Superintendent of Police">
-              SP
-            </div>
-            <button onclick="handleLogout()" title="Logout" class="p-1.5 text-slate-400 hover:text-red-400 transition">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            </button>
-          </div>
-
+          <button onclick="handleLogout()" class="px-3 py-1 bg-red-950/80 hover:bg-red-900 text-red-200 rounded-full border border-red-700 text-[11px] font-semibold flex items-center gap-1 transition shadow">
+            <i class="fa-solid fa-power-off"></i>
+            <span>Logout</span>
+          </button>
         </div>
 
       </div>
     </div>
 
-    <!-- MODULE NAVIGATION TABS -->
-    <nav class="bg-[#071326] border-t border-slate-800/80 overflow-x-auto">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 sm:space-x-2 py-1 text-xs">
-        
+    <!-- MODULE NAVIGATION TABS (QUICK ACCESS) -->
+    <nav class="bg-[#071326] border-t border-slate-800 overflow-x-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 sm:space-x-1.5 py-1 text-xs">
+
+        <!-- Master Overview -->
         <button onclick="switchTab('dashboard')" id="tabBtn-dashboard"
-          class="nav-tab-btn active px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-2">
-          <i class="fa-solid fa-gauge-high text-amber-400"></i>
-          <span>SP Overview</span>
+          class="nav-tab-btn active px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-1.5">
+          <i class="fa-solid fa-house text-amber-400"></i>
+          <span>Modules Hub (ప్రధాన విభాగాలు)</span>
         </button>
 
-        <button onclick="switchTab('crime_stats')" id="tabBtn-crime_stats"
-          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-2 text-slate-300 hover:text-white">
-          <i class="fa-solid fa-chart-column text-blue-400"></i>
-          <span>Head-Wise Abstract (24-26)</span>
+        <!-- Master Head-Wise Workbook -->
+        <button onclick="switchTab('mod_master_hw')" id="tabBtn-mod_master_hw"
+          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-1.5 text-slate-300 hover:text-white">
+          <i class="fa-solid fa-layer-group text-yellow-400"></i>
+          <span>Master Head-Wise (17)</span>
         </button>
 
-        <button onclick="switchTab('ui_cases')" id="tabBtn-ui_cases"
-          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-2 text-slate-300 hover:text-white">
+        <!-- Module 1: Reported Cases -->
+        <button onclick="switchTab('mod_1_reported')" id="tabBtn-mod_1_reported"
+          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-1.5 text-slate-300 hover:text-white">
+          <i class="fa-solid fa-file-shield text-blue-400"></i>
+          <span>1. Reported (12)</span>
+        </button>
+
+        <!-- Module 1A: Total UI Cases -->
+        <button onclick="switchTab('mod_1a_ui')" id="tabBtn-mod_1a_ui"
+          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-1.5 text-slate-300 hover:text-white">
           <i class="fa-solid fa-magnifying-glass text-emerald-400"></i>
-          <span>Total UI Cases (Point-1)</span>
-          <span id="badgeTotalUI" class="px-1.5 py-0.2 text-[10px] bg-blue-900 text-blue-200 rounded-full font-mono">2,597</span>
+          <span>1A. Total UI (22)</span>
         </button>
 
-        <button onclick="switchTab('long_pending')" id="tabBtn-long_pending"
-          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-2 text-slate-300 hover:text-white">
-          <i class="fa-solid fa-clock-rotate-left text-red-400"></i>
-          <span>Long Pending Cases (Point-2)</span>
-          <span id="badgeLongPending" class="px-1.5 py-0.2 text-[10px] bg-red-900 text-red-200 rounded-full font-mono">397</span>
-        </button>
-
-        <button onclick="switchTab('compliance')" id="tabBtn-compliance"
-          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-2 text-slate-300 hover:text-white">
+        <!-- Module 1B: UI Compliance -->
+        <button onclick="switchTab('mod_1b_compliance')" id="tabBtn-mod_1b_compliance"
+          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-1.5 text-slate-300 hover:text-white">
           <i class="fa-solid fa-scale-balanced text-purple-400"></i>
-          <span>Meeting Compliance (1B)</span>
+          <span>1B. Compliance (15)</span>
         </button>
 
+        <!-- Module 2: Long Reported -->
+        <button onclick="switchTab('mod_2_long_reported')" id="tabBtn-mod_2_long_reported"
+          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-1.5 text-slate-300 hover:text-white">
+          <i class="fa-solid fa-file-circle-exclamation text-orange-400"></i>
+          <span>2. Long Reported (8)</span>
+        </button>
+
+        <!-- Module 2A: Long UI -->
+        <button onclick="switchTab('mod_2a_long_ui')" id="tabBtn-mod_2a_long_ui"
+          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-1.5 text-slate-300 hover:text-white">
+          <i class="fa-solid fa-clock-rotate-left text-red-400"></i>
+          <span>2A. Long UI (22)</span>
+        </button>
+
+        <!-- Module 4: Abstract & YoY -->
+        <button onclick="switchTab('mod_4_abstract')" id="tabBtn-mod_4_abstract"
+          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-1.5 text-slate-300 hover:text-white">
+          <i class="fa-solid fa-chart-column text-teal-400"></i>
+          <span>4. Head Abstract (15)</span>
+        </button>
+
+        <!-- PS Dossier 360 -->
         <button onclick="switchTab('ps_dossier')" id="tabBtn-ps_dossier"
-          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-2 text-slate-300 hover:text-white">
+          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-1.5 text-slate-300 hover:text-white">
           <i class="fa-solid fa-building-shield text-amber-300"></i>
           <span>PS 360° Dossier</span>
         </button>
 
+        <!-- Presentation Slides -->
         <button onclick="switchTab('presentation')" id="tabBtn-presentation"
-          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-2 text-slate-300 hover:text-white">
-          <i class="fa-solid fa-person-chalkboard text-yellow-400"></i>
-          <span>Crime Meeting Slides</span>
-        </button>
-
-        <button onclick="switchTab('export_hub')" id="tabBtn-export_hub"
-          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-2 text-slate-300 hover:text-white">
-          <i class="fa-solid fa-file-invoice text-teal-300"></i>
-          <span>Reports & Export</span>
+          class="nav-tab-btn px-3 py-2 rounded-t font-semibold whitespace-nowrap flex items-center gap-1.5 text-slate-300 hover:text-white">
+          <i class="fa-solid fa-person-chalkboard text-yellow-300"></i>
+          <span>Meeting Slides</span>
         </button>
 
       </div>
@@ -222,749 +246,820 @@
   <!-- ================= MAIN CONTAINER ================= -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-    <!-- ================= TAB 1: EXECUTIVE SP OVERVIEW ================= -->
-    <section id="tab-dashboard" class="space-y-6">
-      
-      <!-- District Welcome & Quick Filter Bar -->
-      <div class="bg-police-card rounded-xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    <!-- ================= TAB 1: EXECUTIVE COMMAND HUB & DASHBOARD ================= -->
+    <section id="tab-dashboard" class="app-section space-y-6">
+
+      <!-- GREETING HERO BANNER (MATCHING SCREENSHOT) -->
+      <div class="bg-gradient-to-r from-[#0c1e3d] via-[#10274f] to-[#0c1e3d] border-2 border-[#d4af37]/50 rounded-2xl p-6 sm:p-7 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden">
+        <div class="absolute -top-12 -right-12 w-44 h-44 bg-[#ffd700] opacity-5 rounded-full blur-2xl pointer-events-none"></div>
+
         <div>
-          <div class="flex items-center gap-2 text-xs text-[#ffd700] uppercase font-bold tracking-wider">
-            <i class="fa-solid fa-shield-halved"></i>
-            <span>Srikakulam District Police Administration</span>
-          </div>
-          <h2 class="text-xl font-bold text-white mt-0.5">Crime Meeting Executive Summary & Status Report</h2>
-          <p class="text-xs text-slate-300">All Head-wise Grave & Non-Grave Under Investigation (UI) and Reported Cases</p>
+          <!-- Badge -->
+          <span id="greetingBadge" class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/20 text-[#ffd700] border border-amber-500/40 rounded-full text-xs font-bold uppercase tracking-wider">
+            🌆 Good Evening
+          </span>
+
+          <!-- Large Title -->
+          <h2 id="greetingTitle" class="text-2xl sm:text-3xl font-extrabold text-white mt-2 tracking-wide">
+            Good Evening 🌆 <span class="text-[#ffd700]">Dear Admin</span>
+          </h2>
+
+          <!-- Telugu Subtitle in Gold -->
+          <p id="greetingSub" class="text-sm sm:text-base font-semibold text-[#ffd700] mt-1">
+            శుభ సాయంత్రం! గౌరవనీయ అడ్మిన్ (Dear Admin) - డిస్ట్రిక్ట్ క్రైమ్ మేనేజ్‌మెంట్ & రివ్యూ వ్యవస్థకు స్వాగతం
+          </p>
+
+          <p class="text-xs sm:text-sm text-slate-300 mt-1.5">
+            Select a departmental module below to access records, explore sheets, and track investigation progress:
+          </p>
         </div>
 
-        <div class="flex flex-wrap items-center gap-2">
-          <!-- Sub-Division Filter -->
-          <select id="overviewSubDivSelect" onchange="filterOverview()"
-            class="bg-[#081220] border border-slate-600 text-xs rounded-lg px-3 py-2 text-white focus:border-[#ffd700]">
-            <option value="ALL">All Sub-Divisions (3)</option>
-            <option value="Srikakulam Sub-Division">Srikakulam Sub-Division</option>
-            <option value="Tekkali Sub-Division">Tekkali Sub-Division</option>
-            <option value="Kasibugga Sub-Division">Kasibugga Sub-Division</option>
-          </select>
-
-          <!-- Quick Print Button -->
-          <button onclick="window.print()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-xs text-white border border-slate-600 rounded-lg flex items-center gap-1.5">
-            <i class="fa-solid fa-print"></i>
-            <span>Print Dossier</span>
-          </button>
+        <!-- Right Side: District Police Office Box -->
+        <div class="hidden md:flex flex-col justify-center px-5 py-3.5 bg-[#081220]/90 border border-slate-700/80 rounded-xl text-right shadow-lg shrink-0">
+          <span class="text-sm font-bold text-white tracking-wide">District Police Office, Srikakulam</span>
+          <span class="text-xs text-[#ffd700] font-mono mt-0.5">District Crime Records Bureau (DCRB)</span>
         </div>
       </div>
 
-      <!-- MASTER KPI CARDS -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
-        
-        <!-- Total Reported Cases -->
-        <div class="bg-police-card rounded-xl p-4 relative overflow-hidden">
-          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Total Reported</div>
-          <div id="kpiTotalReported" class="text-2xl font-black text-white mt-1">68,206</div>
-          <div class="text-[10px] text-slate-400 mt-1 flex items-center gap-1">
-            <i class="fa-solid fa-folder-open text-blue-400"></i>
-            <span>All Historical FIRs</span>
-          </div>
-          <div class="absolute -right-2 -bottom-2 text-blue-500/10 text-5xl font-black pointer-events-none">
-            <i class="fa-solid fa-file-shield"></i>
-          </div>
-        </div>
-
-        <!-- Total UI Cases -->
-        <div class="bg-police-card rounded-xl p-4 border-l-4 border-blue-500 relative overflow-hidden">
-          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Total UI Cases</div>
-          <div id="kpiTotalUI" class="text-2xl font-black text-blue-400 mt-1">2,597</div>
-          <div class="text-[10px] text-slate-300 mt-1 flex items-center gap-1">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <span>Under Investigation</span>
-          </div>
-          <div class="absolute -right-2 -bottom-2 text-blue-500/10 text-5xl font-black pointer-events-none">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
-        </div>
-
-        <!-- Actual Active UI Cases -->
-        <div class="bg-police-card rounded-xl p-4 border-l-4 border-emerald-500 relative overflow-hidden">
-          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Actual Active UI</div>
-          <div id="kpiActualUI" class="text-2xl font-black text-emerald-400 mt-1">1,855</div>
-          <div class="text-[10px] text-slate-300 mt-1 flex items-center gap-1">
-            <i class="fa-solid fa-user-clock text-emerald-400"></i>
-            <span>Active Inquiry</span>
-          </div>
-          <div class="absolute -right-2 -bottom-2 text-emerald-500/10 text-5xl font-black pointer-events-none">
-            <i class="fa-solid fa-person-military-pointing"></i>
-          </div>
-        </div>
-
-        <!-- Long Pending UI Cases (> 1 Year) -->
-        <div class="bg-police-card rounded-xl p-4 border-l-4 border-red-500 relative overflow-hidden">
-          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Long Pending UI</div>
-          <div id="kpiLongPending" class="text-2xl font-black text-red-400 mt-1">397</div>
-          <div class="text-[10px] text-red-300 mt-1 flex items-center gap-1">
-            <i class="fa-solid fa-triangle-exclamation text-red-400"></i>
-            <span>Critical SP Focus</span>
-          </div>
-          <div class="absolute -right-2 -bottom-2 text-red-500/10 text-5xl font-black pointer-events-none">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-          </div>
-        </div>
-
-        <!-- Grave vs Non-Grave -->
-        <div class="bg-police-card rounded-xl p-4 border-l-4 border-amber-500 relative overflow-hidden">
-          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Grave vs Non-Grave</div>
-          <div class="text-lg font-black text-white mt-1 flex items-baseline gap-1">
-            <span class="text-red-400" id="kpiGrave">150</span>
-            <span class="text-slate-500 text-xs">/</span>
-            <span class="text-blue-300" id="kpiNonGrave">2,447</span>
-          </div>
-          <div class="text-[10px] text-slate-300 mt-1">
-            <span>Severe Crime Ratio</span>
-          </div>
-          <div class="absolute -right-2 -bottom-2 text-amber-500/10 text-5xl font-black pointer-events-none">
-            <i class="fa-solid fa-scale-balanced"></i>
-          </div>
-        </div>
-
-        <!-- Court Number Awaited -->
-        <div class="bg-police-card rounded-xl p-4 border-l-4 border-purple-500 relative overflow-hidden">
-          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">CC/PRC Awaited</div>
-          <div id="kpiCCAwaited" class="text-2xl font-black text-purple-400 mt-1">742</div>
-          <div class="text-[10px] text-purple-300 mt-1 flex items-center gap-1">
-            <i class="fa-solid fa-gavel"></i>
-            <span>Court Pendency</span>
-          </div>
-          <div class="absolute -right-2 -bottom-2 text-purple-500/10 text-5xl font-black pointer-events-none">
-            <i class="fa-solid fa-landmark"></i>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- CHARTS SECTION: Row 1 -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
-        <!-- Chart 1: Crime Classification Breakdown -->
-        <div class="bg-police-card rounded-xl p-5">
-          <div class="flex items-center justify-between mb-4">
-            <div>
-              <h3 class="font-bold text-white text-sm">UI Cases by Crime Classification</h3>
-              <p class="text-xs text-slate-400">Distribution across major crime categories in Srikakulam</p>
-            </div>
-            <span class="text-xs px-2 py-1 bg-slate-800 text-amber-300 rounded border border-slate-700">Point-1</span>
-          </div>
-          <div class="h-64">
-            <canvas id="crimeClassChart"></canvas>
-          </div>
-        </div>
-
-        <!-- Chart 2: Timeline / Aging of UI Cases -->
-        <div class="bg-police-card rounded-xl p-5">
-          <div class="flex items-center justify-between mb-4">
-            <div>
-              <h3 class="font-bold text-white text-sm">Timeline / Age of Pending UI Cases</h3>
-              <p class="text-xs text-slate-400">Aging analysis (&lt;45 days, 3-6 months, above 1 year)</p>
-            </div>
-            <span class="text-xs px-2 py-1 bg-red-950/60 text-red-300 rounded border border-red-800">Aging Review</span>
-          </div>
-          <div class="h-64">
-            <canvas id="timelineChart"></canvas>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- CHARTS SECTION: Row 2 -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
-        <!-- Chart 3: Top 10 Police Stations by Pending Cases -->
-        <div class="bg-police-card rounded-xl p-5">
-          <div class="flex items-center justify-between mb-4">
-            <div>
-              <h3 class="font-bold text-white text-sm">Top Police Stations with Highest Pending UI</h3>
-              <p class="text-xs text-slate-400">Priority review list for the Superintendent of Police</p>
-            </div>
-            <span class="text-xs px-2 py-1 bg-blue-900/50 text-blue-300 rounded border border-blue-700">Station Wise</span>
-          </div>
-          <div class="h-64">
-            <canvas id="topStationsChart"></canvas>
-          </div>
-        </div>
-
-        <!-- Chart 4: Primary Bottlenecks / Reasons for UI Delay -->
-        <div class="bg-police-card rounded-xl p-5">
-          <div class="flex items-center justify-between mb-4">
-            <div>
-              <h3 class="font-bold text-white text-sm">Top Reasons for Investigation Pendency</h3>
-              <p class="text-xs text-slate-400">Court numbers, clue tracking, accused absconding, RFSL</p>
-            </div>
-            <span class="text-xs px-2 py-1 bg-amber-900/50 text-amber-300 rounded border border-amber-700">Reasons</span>
-          </div>
-          <div class="h-64">
-            <canvas id="reasonsChart"></canvas>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- PRIORITY HIGHLIGHT: Top Stations Summary Table -->
-      <div class="bg-police-card rounded-xl p-5">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
+      <!-- SECTION TITLE: POLICE DEPARTMENT MODULES (MATCHING SCREENSHOT) -->
+      <div class="pt-2">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-3 border-b border-slate-800">
           <div>
-            <h3 class="font-bold text-white text-sm flex items-center gap-2">
-              <i class="fa-solid fa-list-check text-[#ffd700]"></i>
-              <span>Police Station Wise Status Matrix (Srikakulam District)</span>
+            <h3 class="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2">
+              <span>🏛️</span>
+              <span>Police Department Modules / అందుబాటులో ఉన్న విభాగాలు</span>
             </h3>
-            <p class="text-xs text-slate-400">Station caseload, Grave cases, Long pending backlog, and Court CC awaited</p>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Choose an operational module to open head-wise cases, compliance, aging analysis, or analytical records:
+            </p>
           </div>
-          <button onclick="switchTab('ui_cases')" class="text-xs text-[#ffd700] hover:underline flex items-center gap-1">
-            <span>View All Cases Explorer</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </button>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-xs text-left">
-            <thead class="bg-[#081220] text-slate-300 uppercase tracking-wider text-[11px] border-b border-slate-700">
-              <tr>
-                <th class="py-2.5 px-3">Police Station</th>
-                <th class="py-2.5 px-3">Sub-Division</th>
-                <th class="py-2.5 px-3 text-center">Total UI</th>
-                <th class="py-2.5 px-3 text-center">Grave</th>
-                <th class="py-2.5 px-3 text-center">Non-Grave</th>
-                <th class="py-2.5 px-3 text-center">Above 1 Yr</th>
-                <th class="py-2.5 px-3 text-center">Long Pending</th>
-                <th class="py-2.5 px-3 text-center">CC Awaited</th>
-                <th class="py-2.5 px-3 text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody id="overviewStationTableBody" class="divide-y divide-slate-800">
-              <!-- Dynamically populated -->
-            </tbody>
-          </table>
+          <span class="text-xs font-mono px-3 py-1 bg-blue-950/70 border border-blue-700/60 rounded-full text-blue-300 font-semibold self-start sm:self-auto">
+            9 Operational Modules Available
+          </span>
         </div>
       </div>
 
-    </section>
+      <!-- ================= 3-COLUMN MODULE CARDS GRID (EXACT SCREENSHOT LAYOUT) ================= -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-    <!-- ================= TAB 2: HEAD-WISE CRIME STATISTICS (2024-2026 ABSTRACT) ================= -->
-    <section id="tab-crime_stats" class="hidden space-y-6">
-      
-      <div class="bg-police-card rounded-xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div>
-          <div class="flex items-center gap-2 text-xs text-blue-400 uppercase font-bold tracking-wider">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>File 4: Head Wise Abstract</span>
-          </div>
-          <h2 class="text-xl font-bold text-white mt-0.5">Overall Crime Statistics (2024 vs 2025 vs 2026)</h2>
-          <p class="text-xs text-slate-300">Comparative trend analysis with percentage rise/reduction across crime categories</p>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <input type="text" id="crimeHeadSearchInput" oninput="renderCrimeStatsTable()" placeholder="Search Crime Head..."
-            class="bg-[#081220] border border-slate-600 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-400 focus:border-[#ffd700]">
-          <button onclick="exportCrimeStatsToExcel()" class="px-3 py-1.5 bg-emerald-900/80 hover:bg-emerald-800 text-emerald-100 border border-emerald-600 rounded-lg text-xs flex items-center gap-1">
-            <i class="fa-solid fa-file-excel"></i>
-            <span>Export Table</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Comparative Table -->
-      <div class="bg-police-card rounded-xl p-5">
-        <div class="overflow-x-auto">
-          <table class="w-full text-xs text-left">
-            <thead class="bg-[#081220] text-slate-300 uppercase tracking-wider text-[11px] border-b border-slate-700">
-              <tr>
-                <th class="py-3 px-3">S.No</th>
-                <th class="py-3 px-3">Crime Head</th>
-                <th class="py-3 px-3">Classification</th>
-                <th class="py-3 px-3 text-center bg-blue-950/40">2024</th>
-                <th class="py-3 px-3 text-center bg-blue-900/40">2025</th>
-                <th class="py-3 px-3 text-center bg-blue-800/40 font-bold text-amber-300">2026 (Upto)</th>
-                <th class="py-3 px-3 text-center">2024-2025 Trend</th>
-                <th class="py-3 px-3 text-center">2025-2026 Trend</th>
-              </tr>
-            </thead>
-            <tbody id="crimeStatsTableBody" class="divide-y divide-slate-800">
-              <!-- Dynamically populated -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ================= TAB 3: TOTAL UI CASES EXPLORER (POINT-1 & 1A) ================= -->
-    <section id="tab-ui_cases" class="hidden space-y-6">
-      
-      <!-- Filter Bar -->
-      <div class="bg-police-card rounded-xl p-5 space-y-4">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 border-b border-slate-700/80 pb-3">
+        <!-- CARD 1: 1. TOTAL REPORTED CASES -->
+        <div class="module-hub-card border-t-4 border-blue-600 p-6 flex flex-col justify-between">
           <div>
-            <div class="text-xs text-emerald-400 uppercase font-bold tracking-wider">Point-1 & 1A: Comprehensive UI Registry</div>
-            <h2 class="text-lg font-bold text-white">Under Investigation Cases Master Explorer</h2>
-            <p class="text-xs text-slate-400">Filter and search across all 2,597 active cases in Srikakulam District</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <button onclick="resetUIFilters()" class="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 rounded border border-slate-600">
-              <i class="fa-solid fa-rotate-left mr-1"></i> Reset Filters
-            </button>
-            <button onclick="exportFilteredUIToExcel()" class="px-3 py-1.5 bg-emerald-900 hover:bg-emerald-800 text-emerald-100 text-xs rounded border border-emerald-600 flex items-center gap-1">
-              <i class="fa-solid fa-download"></i> Export Filtered
-            </button>
-          </div>
-        </div>
-
-        <!-- Filter Row -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          
-          <!-- Police Station -->
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Police Station</label>
-            <select id="filterPS" onchange="applyUIFilters()" class="w-full bg-[#081220] border border-slate-600 rounded text-xs px-2.5 py-1.5 text-white focus:border-[#ffd700]">
-              <option value="ALL">All Stations (36)</option>
-              <!-- Populated dynamically -->
-            </select>
-          </div>
-
-          <!-- Sub-Division -->
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Sub-Division</label>
-            <select id="filterSubDiv" onchange="applyUIFilters()" class="w-full bg-[#081220] border border-slate-600 rounded text-xs px-2.5 py-1.5 text-white focus:border-[#ffd700]">
-              <option value="ALL">All Sub-Divisions</option>
-              <option value="Srikakulam Sub-Division">Srikakulam</option>
-              <option value="Tekkali Sub-Division">Tekkali</option>
-              <option value="Kasibugga Sub-Division">Kasibugga</option>
-            </select>
-          </div>
-
-          <!-- Gravity -->
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Gravity Type</label>
-            <select id="filterGravity" onchange="applyUIFilters()" class="w-full bg-[#081220] border border-slate-600 rounded text-xs px-2.5 py-1.5 text-white focus:border-[#ffd700]">
-              <option value="ALL">All Gravity</option>
-              <option value="Grave">Grave Only</option>
-              <option value="Non-Grave">Non-Grave Only</option>
-            </select>
-          </div>
-
-          <!-- Timeline -->
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Timeline / Age</label>
-            <select id="filterTimeline" onchange="applyUIFilters()" class="w-full bg-[#081220] border border-slate-600 rounded text-xs px-2.5 py-1.5 text-white focus:border-[#ffd700]">
-              <option value="ALL">All Timelines</option>
-              <option value="Above 1 Year">Above 1 Year</option>
-              <option value="Above 6 Months">Above 6 Months</option>
-              <option value="Above 3 Months">Above 3 Months</option>
-              <option value="Above 60 Days">Above 60 Days</option>
-              <option value="45 to 60 Days">45 to 60 Days</option>
-              <option value="Below 45 Days">Below 45 Days</option>
-            </select>
-          </div>
-
-          <!-- UI Reason -->
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Reason for UI</label>
-            <select id="filterReason" onchange="applyUIFilters()" class="w-full bg-[#081220] border border-slate-600 rounded text-xs px-2.5 py-1.5 text-white focus:border-[#ffd700]">
-              <option value="ALL">All Reasons</option>
-              <option value="SC/PRC/CC No. Awaited">CC / PRC No. Awaited</option>
-              <option value="Want of clues">Want of clues</option>
-              <option value="For Arrest of Accused">Arrest of Accused</option>
-              <option value="Being Charged">Being Charged</option>
-              <option value="For RFSL Analysis reports">RFSL Report</option>
-              <option value="Wound Certificate">Wound Certificate</option>
-              <option value="Pending records from other depts">Records from Depts</option>
-            </select>
-          </div>
-
-          <!-- Keyword Search -->
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Search Keyword / FIR</label>
-            <div class="relative">
-              <input type="text" id="filterKeyword" oninput="applyUIFilters()" placeholder="FIR, Section, IO..."
-                class="w-full bg-[#081220] border border-slate-600 rounded text-xs pl-2.5 pr-7 py-1.5 text-white focus:border-[#ffd700]">
-              <span class="absolute right-2 top-2 text-slate-400 text-xs">
-                <i class="fa-solid fa-magnifying-glass"></i>
+            <!-- Top Pill Badge -->
+            <div class="text-center mb-3">
+              <span class="inline-block px-3 py-1 bg-blue-50 text-blue-700 border border-blue-200 rounded-full text-[11px] font-bold uppercase tracking-wider">
+                📑 MODULE 01 • TOTAL REPORTED CASES
               </span>
             </div>
-          </div>
 
-        </div>
+            <!-- Title En & Te -->
+            <h4 class="text-xl font-extrabold text-slate-900 tracking-tight">1. Total Reported Cases</h4>
+            <h5 class="text-sm font-bold text-blue-900 mt-0.5">మొత్తం నమోదైన కేసులు (12 షీట్లు & స్టేషన్ రికార్డులు)</h5>
 
-        <div class="flex items-center justify-between text-xs text-slate-400 pt-1">
-          <div>
-            Showing <span id="filteredCount" class="font-bold text-amber-300">0</span> of <span id="totalUICount">2,597</span> cases
-          </div>
-          <div class="flex items-center gap-2">
-            <span>Rows per page:</span>
-            <select id="pageSizeSelect" onchange="changePageSize()" class="bg-[#081220] border border-slate-600 rounded px-2 py-0.5 text-xs text-white">
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-              <option value="500">500</option>
-            </select>
-          </div>
-        </div>
+            <p class="text-xs text-slate-600 leading-relaxed mt-2.5">
+              Complete historical reported cases across all 36 police stations and 3 sub-divisions. Detailed head-wise FIR counts, IPC offences, and Special Local Laws.
+            </p>
 
-      </div>
-
-      <!-- Cases Data Table -->
-      <div class="bg-police-card rounded-xl p-5">
-        <div class="overflow-x-auto">
-          <table class="w-full text-xs text-left">
-            <thead class="bg-[#081220] text-slate-300 uppercase tracking-wider text-[11px] border-b border-slate-700">
-              <tr>
-                <th class="py-3 px-3">S.No</th>
-                <th class="py-3 px-3">PS</th>
-                <th class="py-3 px-3">FIR No</th>
-                <th class="py-3 px-3">Date</th>
-                <th class="py-3 px-3">Acts & Section</th>
-                <th class="py-3 px-3">Crime Head</th>
-                <th class="py-3 px-3">Gravity</th>
-                <th class="py-3 px-3">IO Name</th>
-                <th class="py-3 px-3">Reason for UI</th>
-                <th class="py-3 px-3 text-center">Days</th>
-                <th class="py-3 px-3 text-center">Timeline</th>
-                <th class="py-3 px-3 text-center">Dossier</th>
-              </tr>
-            </thead>
-            <tbody id="uiCasesTableBody" class="divide-y divide-slate-800">
-              <!-- Dynamically populated -->
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Pagination Controls -->
-        <div class="flex items-center justify-between border-t border-slate-700/80 pt-4 mt-4">
-          <div class="text-xs text-slate-400" id="paginationInfo">Page 1 of 1</div>
-          <div class="flex items-center space-x-1" id="paginationButtons">
-            <!-- Populated dynamically -->
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- ================= TAB 4: LONG PENDING CASES (POINT-2 & 2A) ================= -->
-    <section id="tab-long_pending" class="hidden space-y-6">
-      
-      <div class="bg-police-card rounded-xl p-5 border-l-4 border-red-500">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div>
-            <div class="flex items-center gap-2 text-xs text-red-400 uppercase font-bold tracking-wider">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <span>Point-2 & 2A: High Priority Review</span>
+            <!-- 2x2 Stat Metrics Box -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 grid grid-cols-2 gap-3 my-4">
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Total Reported</span>
+                <span class="text-lg font-black text-slate-900">68,206 Cases</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Total Sheets</span>
+                <span class="text-lg font-black text-blue-700">12 Sheets</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Police Stations</span>
+                <span class="text-lg font-black text-slate-900">36 Units</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Sub-Divisions</span>
+                <span class="text-lg font-black text-emerald-700">3 Divisions</span>
+              </div>
             </div>
-            <h2 class="text-xl font-bold text-white mt-0.5">Long Pending Cases (> 1 Year to 10+ Years)</h2>
-            <p class="text-xs text-slate-300">Special attention list for SP Crime Meeting questioning and time-bound disposal directives</p>
           </div>
 
-          <div class="flex items-center gap-3">
-            <select id="longPendingStationFilter" onchange="renderLongPendingTable()"
-              class="bg-[#081220] border border-slate-600 rounded-lg px-3 py-1.5 text-xs text-white focus:border-[#ffd700]">
-              <option value="ALL">All Stations with Pending Cases</option>
-            </select>
-            <button onclick="exportLongPendingToExcel()" class="px-3 py-1.5 bg-red-900 hover:bg-red-800 text-red-100 border border-red-700 rounded-lg text-xs flex items-center gap-1">
-              <i class="fa-solid fa-file-excel"></i>
-              <span>Export Long Pending (397)</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Long Pending Quick Stats -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div class="bg-police-card rounded-xl p-4 border-l-4 border-red-600">
-          <div class="text-xs text-slate-400 font-semibold uppercase">Total Long Pending UI</div>
-          <div class="text-3xl font-black text-red-400 mt-1">397</div>
-          <div class="text-xs text-slate-400 mt-1">Cases exceeding standard limits</div>
-        </div>
-        <div class="bg-police-card rounded-xl p-4 border-l-4 border-amber-600">
-          <div class="text-xs text-slate-400 font-semibold uppercase">Pending for Clues</div>
-          <div class="text-3xl font-black text-amber-400 mt-1">214</div>
-          <div class="text-xs text-slate-400 mt-1">Want of clues / untraced</div>
-        </div>
-        <div class="bg-police-card rounded-xl p-4 border-l-4 border-blue-600">
-          <div class="text-xs text-slate-400 font-semibold uppercase">Suspect Verification</div>
-          <div class="text-3xl font-black text-blue-400 mt-1">54</div>
-          <div class="text-xs text-slate-400 mt-1">Verification pending</div>
-        </div>
-        <div class="bg-police-card rounded-xl p-4 border-l-4 border-purple-600">
-          <div class="text-xs text-slate-400 font-semibold uppercase">Court / Stay Orders</div>
-          <div class="text-3xl font-black text-purple-400 mt-1">17</div>
-          <div class="text-xs text-slate-400 mt-1">Legal stays and orders pending</div>
-        </div>
-      </div>
-
-      <!-- Long Pending Table -->
-      <div class="bg-police-card rounded-xl p-5">
-        <div class="overflow-x-auto">
-          <table class="w-full text-xs text-left">
-            <thead class="bg-[#081220] text-slate-300 uppercase tracking-wider text-[11px] border-b border-slate-700">
-              <tr>
-                <th class="py-3 px-3">S.No</th>
-                <th class="py-3 px-3">PS</th>
-                <th class="py-3 px-3">FIR No</th>
-                <th class="py-3 px-3">FIR Date</th>
-                <th class="py-3 px-3">Section of Law</th>
-                <th class="py-3 px-3">Crime Head</th>
-                <th class="py-3 px-3">Gravity</th>
-                <th class="py-3 px-3">Reason for UI</th>
-                <th class="py-3 px-3 text-center bg-red-950/40 text-red-300">Days Pending</th>
-                <th class="py-3 px-3">Timeline</th>
-                <th class="py-3 px-3 text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody id="longPendingTableBody" class="divide-y divide-slate-800">
-              <!-- Dynamically populated -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ================= TAB 5: UI COMPLIANCE & MEETING PROGRESS (POINT-1B) ================= -->
-    <section id="tab-compliance" class="hidden space-y-6">
-      
-      <div class="bg-police-card rounded-xl p-5 border-l-4 border-purple-500">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div>
-            <div class="text-xs text-purple-400 uppercase font-bold tracking-wider">File 1B: Compliance & Disposal Review</div>
-            <h2 class="text-xl font-bold text-white mt-0.5">Previous Crime Meeting vs Present Crime Meeting Review</h2>
-            <p class="text-xs text-slate-300">Comparative assessment of progress made between meetings: Cases disposed, CC received, Arrests executed</p>
-          </div>
-          <button onclick="exportComplianceToExcel()" class="px-3 py-1.5 bg-purple-900 hover:bg-purple-800 text-purple-100 border border-purple-700 rounded-lg text-xs flex items-center gap-1">
-            <i class="fa-solid fa-file-excel"></i>
-            <span>Export Compliance</span>
+          <!-- Bottom Button -->
+          <button onclick="switchTab('mod_1_reported')"
+            class="w-full py-3 bg-[#0c1e3d] hover:bg-[#16366f] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]">
+            <i class="fa-solid fa-rocket text-amber-300"></i>
+            <span>Open Reported Cases / ప్రవేశించండి ➔</span>
           </button>
         </div>
-      </div>
 
-      <div class="bg-police-card rounded-xl p-5">
-        <div class="overflow-x-auto">
-          <table class="w-full text-xs text-left">
-            <thead class="bg-[#081220] text-slate-300 uppercase tracking-wider text-[11px] border-b border-slate-700">
-              <tr>
-                <th class="py-3 px-3">S.No</th>
-                <th class="py-3 px-3">Previous Reason for UI</th>
-                <th class="py-3 px-3 text-center">Cases in Last Meeting</th>
-                <th class="py-3 px-3 text-center bg-emerald-950/40 text-emerald-300">Disposed to PT / Court</th>
-                <th class="py-3 px-3 text-center">CC Awaited</th>
-                <th class="py-3 px-3 text-center">CS Returned</th>
-                <th class="py-3 px-3 text-center">Accused Arrested</th>
-                <th class="py-3 px-3 text-center">Being Charged</th>
-                <th class="py-3 px-3 text-center font-bold text-blue-300">Present UI</th>
-                <th class="py-3 px-3 text-center font-bold text-emerald-300">Actual UI</th>
-              </tr>
-            </thead>
-            <tbody id="complianceTableBody" class="divide-y divide-slate-800">
-              <!-- Dynamically populated -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ================= TAB 6: POLICE STATION 360° DOSSIER ================= -->
-    <section id="tab-ps_dossier" class="hidden space-y-6">
-      
-      <!-- Station Picker -->
-      <div class="bg-police-card rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <div class="text-xs text-[#ffd700] uppercase font-bold tracking-wider">Station Comprehensive Dossier</div>
-          <h2 class="text-xl font-bold text-white mt-0.5">Police Station Performance & Case Card</h2>
-          <p class="text-xs text-slate-300">Select any Police Station to inspect its complete profile, reported/finalised metrics, and pending FIRs</p>
-        </div>
-
-        <div class="flex items-center gap-3 w-full sm:w-auto">
-          <label class="text-xs text-slate-300 font-semibold whitespace-nowrap">Select Police Station:</label>
-          <select id="dossierStationSelect" onchange="renderStationDossier()"
-            class="w-full sm:w-64 bg-[#081220] border-2 border-[#ffd700] rounded-lg px-3 py-2 text-sm text-white font-bold focus:outline-none">
-            <!-- Populated dynamically -->
-          </select>
-        </div>
-      </div>
-
-      <!-- Station Dossier Card Content -->
-      <div id="stationDossierContent" class="space-y-6">
-        <!-- Rendered dynamically -->
-      </div>
-
-    </section>
-
-    <!-- ================= TAB 7: LIVE CRIME MEETING PRESENTATION MODE ================= -->
-    <section id="tab-presentation" class="hidden space-y-6">
-      
-      <div class="bg-gradient-to-r from-[#0c1e3d] via-[#163264] to-[#0c1e3d] border-2 border-[#ffd700] rounded-2xl p-6 shadow-2xl text-center">
-        <div class="flex items-center justify-center gap-4 mb-3">
-          <img src="assets/ap_police_logo.svg" alt="AP Police" class="w-16 h-16">
+        <!-- CARD 2: 1A. TOTAL UI CASES (POINT-1) -->
+        <div class="module-hub-card border-t-4 border-emerald-600 p-6 flex flex-col justify-between">
           <div>
-            <h2 class="text-2xl font-black text-white tracking-wide">శ్రీకాకుళం జిల్లా పోలీస్ - నేర సమీక్ష సమావేశం</h2>
-            <p class="text-sm text-amber-300 font-semibold tracking-wider uppercase">Superintendent of Police Review Screen</p>
-          </div>
-          <img src="assets/srikakulam_police_logo.svg" alt="Srikakulam Police" class="w-16 h-16">
-        </div>
-        
-        <p class="text-xs text-slate-300 max-w-2xl mx-auto">
-          High-visibility projection mode engineered for large projector screens in the SP Conference Hall.
-          Use the quick station selector below to project any police station's critical review slide.
-        </p>
+            <!-- Top Pill Badge -->
+            <div class="text-center mb-3">
+              <span class="inline-block px-3 py-1 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full text-[11px] font-bold uppercase tracking-wider">
+                ⚖️ MODULE 1A • TOTAL UI CASES (POINT-1)
+              </span>
+            </div>
 
-        <!-- Quick Switcher Bar -->
-        <div class="mt-4 flex flex-wrap items-center justify-center gap-3">
-          <select id="presentationPSSelect" onchange="updatePresentationSlide()"
-            class="bg-[#081220] border-2 border-[#ffd700] rounded-lg px-4 py-2 text-sm text-white font-bold">
+            <!-- Title En & Te -->
+            <h4 class="text-xl font-extrabold text-slate-900 tracking-tight">1A. Total UI Cases Registry</h4>
+            <h5 class="text-sm font-bold text-emerald-900 mt-0.5">దర్యాప్తులో ఉన్న మొత్తం కేసులు (22 షీట్లు)</h5>
+
+            <p class="text-xs text-slate-600 leading-relaxed mt-2.5">
+              Point-1 Master under-investigation database. Complete crime head sheets for bodily offences, property crimes, crime against women, POCSO, and road accidents.
+            </p>
+
+            <!-- 2x2 Stat Metrics Box -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 grid grid-cols-2 gap-3 my-4">
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Total UI</span>
+                <span class="text-lg font-black text-blue-700">2,723 Cases</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Actual Active UI</span>
+                <span class="text-lg font-black text-emerald-700">2,080 Cases</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Grave UI</span>
+                <span class="text-lg font-black text-red-600">150 Cases</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Non-Grave</span>
+                <span class="text-lg font-black text-slate-900">2,447 Cases</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Button -->
+          <button onclick="switchTab('mod_1a_ui')"
+            class="w-full py-3 bg-[#065f46] hover:bg-[#047857] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]">
+            <i class="fa-solid fa-scale-balanced text-amber-300"></i>
+            <span>Open 1A UI Portal / ప్రవేశించండి ➔</span>
+          </button>
+        </div>
+
+        <!-- CARD 3: 1B. UI COMPLIANCE -->
+        <div class="module-hub-card border-t-4 border-purple-600 p-6 flex flex-col justify-between">
+          <div>
+            <!-- Top Pill Badge -->
+            <div class="text-center mb-3">
+              <span class="inline-block px-3 py-1 bg-purple-50 text-purple-800 border border-purple-200 rounded-full text-[11px] font-bold uppercase tracking-wider">
+                📋 MODULE 1B • MEETING COMPLIANCE
+              </span>
+            </div>
+
+            <!-- Title En & Te -->
+            <h4 class="text-xl font-extrabold text-slate-900 tracking-tight">1B. UI Cases Compliance</h4>
+            <h5 class="text-sm font-bold text-purple-900 mt-0.5">మీటింగ్ సమీక్ష & మార్గదర్శకాల అమలు (15 షీట్లు)</h5>
+
+            <p class="text-xs text-slate-600 leading-relaxed mt-2.5">
+              Superintendent of Police crime review directives and compliance tracking. Verification of instructions given in previous crime meetings and disposal progress.
+            </p>
+
+            <!-- 2x2 Stat Metrics Box -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 grid grid-cols-2 gap-3 my-4">
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Total Sheets</span>
+                <span class="text-lg font-black text-purple-700">15 Sheets</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Compliance Rate</span>
+                <span class="text-lg font-black text-emerald-700">91.2%</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Review Heads</span>
+                <span class="text-lg font-black text-slate-900">14 Heads</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Action Status</span>
+                <span class="text-lg font-black text-teal-700">Verified</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Button -->
+          <button onclick="switchTab('mod_1b_compliance')"
+            class="w-full py-3 bg-[#581c87] hover:bg-[#6b21a8] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]">
+            <i class="fa-solid fa-list-check text-amber-300"></i>
+            <span>Open Compliance Portal / ప్రవేశించండి ➔</span>
+          </button>
+        </div>
+
+        <!-- CARD 4: 2. LONG PENDING REPORTED CASES -->
+        <div class="module-hub-card border-t-4 border-amber-600 p-6 flex flex-col justify-between">
+          <div>
+            <!-- Top Pill Badge -->
+            <div class="text-center mb-3">
+              <span class="inline-block px-3 py-1 bg-amber-50 text-amber-800 border border-amber-200 rounded-full text-[11px] font-bold uppercase tracking-wider">
+                📂 MODULE 02 • LONG REPORTED CASES
+              </span>
+            </div>
+
+            <!-- Title En & Te -->
+            <h4 class="text-xl font-extrabold text-slate-900 tracking-tight">2. Long Pending Reported Cases</h4>
+            <h5 class="text-sm font-bold text-amber-900 mt-0.5">దీర్ఘకాలికంగా నమోదైన కేసుల సమీక్ష (8 షీట్లు)</h5>
+
+            <p class="text-xs text-slate-600 leading-relaxed mt-2.5">
+              Aging analysis of reported FIRs with historical pendency across years. Identification of procedural stalls, warrant executions, and trial stages.
+            </p>
+
+            <!-- 2x2 Stat Metrics Box -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 grid grid-cols-2 gap-3 my-4">
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Total Sheets</span>
+                <span class="text-lg font-black text-amber-700">8 Sheets</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Reported Age</span>
+                <span class="text-lg font-black text-red-600">> 1 Year</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Target Disposal</span>
+                <span class="text-lg font-black text-emerald-700">100% Target</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Tracking Units</span>
+                <span class="text-lg font-black text-slate-900">36 Stations</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Button -->
+          <button onclick="switchTab('mod_2_long_reported')"
+            class="w-full py-3 bg-[#b45309] hover:bg-[#d97706] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]">
+            <i class="fa-solid fa-folder-open text-amber-200"></i>
+            <span>Open Long Reported / ప్రవేశించండి ➔</span>
+          </button>
+        </div>
+
+        <!-- CARD 5: 2A. LONG PENDING UI CASES (POINT-2 CRITICAL) -->
+        <div class="module-hub-card border-t-4 border-red-600 p-6 flex flex-col justify-between ring-2 ring-red-500/30">
+          <div>
+            <!-- Top Pill Badge -->
+            <div class="text-center mb-3">
+              <span class="inline-block px-3 py-1 bg-red-50 text-red-700 border border-red-300 rounded-full text-[11px] font-bold uppercase tracking-wider">
+                🚨 HIGH PRIORITY • LONG PENDING UI (POINT-2)
+              </span>
+            </div>
+
+            <!-- Title En & Te -->
+            <h4 class="text-xl font-extrabold text-slate-900 tracking-tight">2A. Long Pending UI Cases</h4>
+            <h5 class="text-sm font-bold text-red-800 mt-0.5">భారీ పెండెన్సీ కేసులు & ఎస్పీ ప్రాధాన్యత విచారణ (22 షీట్లు)</h5>
+
+            <p class="text-xs text-slate-600 leading-relaxed mt-2.5">
+              Cases pending investigation for over 1 year and 2 years. Critical review module for Superintendent of Police focus on absconding accused and FSL pendency.
+            </p>
+
+            <!-- 2x2 Stat Metrics Box -->
+            <div class="bg-red-50/50 border border-red-200 rounded-xl p-3 grid grid-cols-2 gap-3 my-4">
+              <div class="metric-stat-box border-red-100 bg-white">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-red-600 block">Long Pending (>1Y)</span>
+                <span class="text-lg font-black text-red-600">398 Cases</span>
+              </div>
+              <div class="metric-stat-box border-red-100 bg-white">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-red-700 block">Critical (>2 Yrs)</span>
+                <span class="text-lg font-black text-red-700">215 Cases</span>
+              </div>
+              <div class="metric-stat-box border-red-100 bg-white">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Total Sheets</span>
+                <span class="text-lg font-black text-slate-900">22 Sheets</span>
+              </div>
+              <div class="metric-stat-box border-red-100 bg-white">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Arrest Backlog</span>
+                <span class="text-lg font-black text-orange-600">352 Pending</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Button -->
+          <button onclick="switchTab('mod_2a_long_ui')"
+            class="w-full py-3 bg-[#b91c1c] hover:bg-[#dc2626] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]">
+            <i class="fa-solid fa-triangle-exclamation text-amber-300"></i>
+            <span>Open Long Pending UI / ప్రవేశించండి ➔</span>
+          </button>
+        </div>
+
+        <!-- CARD 6: 4. HEAD-WISE ABSTRACT & TRENDS -->
+        <div class="module-hub-card border-t-4 border-teal-600 p-6 flex flex-col justify-between">
+          <div>
+            <!-- Top Pill Badge -->
+            <div class="text-center mb-3">
+              <span class="inline-block px-3 py-1 bg-teal-50 text-teal-800 border border-teal-200 rounded-full text-[11px] font-bold uppercase tracking-wider">
+                📊 MODULE 04 • HEAD ABSTRACT & YoY %
+              </span>
+            </div>
+
+            <!-- Title En & Te -->
+            <h4 class="text-xl font-extrabold text-slate-900 tracking-tight">4. Head-Wise Abstract & Trends</h4>
+            <h5 class="text-sm font-bold text-teal-900 mt-0.5">2024, 2025 & 2026 శాతాలు & వార్షిక నివేదిక (15 షీట్లు)</h5>
+
+            <p class="text-xs text-slate-600 leading-relaxed mt-2.5">
+              Official comparative crime statistics with automated percentage increase/reduction indicators. Head-wise and station-wise performance comparison.
+            </p>
+
+            <!-- 2x2 Stat Metrics Box -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 grid grid-cols-2 gap-3 my-4">
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Total Sheets</span>
+                <span class="text-lg font-black text-teal-700">15 Sheets</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Years Compared</span>
+                <span class="text-lg font-black text-slate-900">2024 - 2026</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">YoY Analysis</span>
+                <span class="text-lg font-black text-emerald-700">Automated %</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Trend Colors</span>
+                <span class="text-lg font-black text-emerald-700">Green / Red %</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Button -->
+          <button onclick="switchTab('mod_4_abstract')"
+            class="w-full py-3 bg-[#0f766e] hover:bg-[#115e59] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]">
+            <i class="fa-solid fa-chart-line text-amber-300"></i>
+            <span>Open Abstract Portal / ప్రవేశించండి ➔</span>
+          </button>
+        </div>
+
+        <!-- CARD 7: MASTER HEAD-WISE & DASH BOARD (FILE 1) -->
+        <div class="module-hub-card border-t-4 border-amber-500 p-6 flex flex-col justify-between">
+          <div>
+            <!-- Top Pill Badge -->
+            <div class="text-center mb-3">
+              <span class="inline-block px-3 py-1 bg-amber-50 text-amber-900 border border-amber-300 rounded-full text-[11px] font-bold uppercase tracking-wider">
+                ⭐ MASTER MODULE • HEAD-WISE & DASH BOARD
+              </span>
+            </div>
+
+            <!-- Title En & Te -->
+            <h4 class="text-xl font-extrabold text-slate-900 tracking-tight">Point-1 & 2 Master UI Head-Wise</h4>
+            <h5 class="text-sm font-bold text-amber-900 mt-0.5">ప్రధాన మాస్టర్ మ్యాట్రిక్స్ & కేటగిరీల వర్గీకరణ (17 షీట్లు)</h5>
+
+            <p class="text-xs text-slate-600 leading-relaxed mt-2.5">
+              Consolidated Master Crime Matrix mirrored from the official Dash Board sheet. 17 comprehensive sheets covering gravity types, bodily offences, and reasons.
+            </p>
+
+            <!-- 2x2 Stat Metrics Box -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 grid grid-cols-2 gap-3 my-4">
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Total Sheets</span>
+                <span class="text-lg font-black text-amber-700">17 Sheets</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Reasons Wise</span>
+                <span class="text-lg font-black text-slate-900">14 Heads</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Time-Wise UI</span>
+                <span class="text-lg font-black text-blue-700">6 Brackets</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">DCRB Records</span>
+                <span class="text-lg font-black text-slate-900">3,968 Recs</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Button -->
+          <button onclick="switchTab('mod_master_hw')"
+            class="w-full py-3 bg-[#0a192f] hover:bg-[#112240] text-[#ffd700] font-bold text-xs uppercase tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99] border border-[#ffd700]/40">
+            <i class="fa-solid fa-layer-group text-amber-400"></i>
+            <span>Open Master Head-Wise / ప్రవేశించండి ➔</span>
+          </button>
+        </div>
+
+        <!-- CARD 8: POLICE STATION 360° DOSSIER -->
+        <div class="module-hub-card border-t-4 border-slate-700 p-6 flex flex-col justify-between">
+          <div>
+            <!-- Top Pill Badge -->
+            <div class="text-center mb-3">
+              <span class="inline-block px-3 py-1 bg-slate-100 text-slate-800 border border-slate-300 rounded-full text-[11px] font-bold uppercase tracking-wider">
+                🛡️ 360° DOSSIER • STATION ROSTER
+              </span>
+            </div>
+
+            <!-- Title En & Te -->
+            <h4 class="text-xl font-extrabold text-slate-900 tracking-tight">Police Station 360° Dossier</h4>
+            <h5 class="text-sm font-bold text-slate-800 mt-0.5">36 పోలీస్ స్టేషన్ల సమగ్ర సమాచారం & పెండెన్సీ</h5>
+
+            <p class="text-xs text-slate-600 leading-relaxed mt-2.5">
+              Interactive deep-dive per Police Station. Instant breakdown of total UI, active investigations, court CC numbers awaited, timeline aging, and bottlenecks.
+            </p>
+
+            <!-- 2x2 Stat Metrics Box -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 grid grid-cols-2 gap-3 my-4">
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Total Stations</span>
+                <span class="text-lg font-black text-slate-900">36 PS Units</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Sub-Divisions</span>
+                <span class="text-lg font-black text-blue-700">3 Divisions</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">High Clearance</span>
+                <span class="text-lg font-black text-emerald-700">Gara (88%)</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Dossier View</span>
+                <span class="text-lg font-black text-purple-700">Instant Report</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Button -->
+          <button onclick="switchTab('ps_dossier')"
+            class="w-full py-3 bg-[#1e293b] hover:bg-[#334155] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]">
+            <i class="fa-solid fa-building-shield text-amber-300"></i>
+            <span>Open Station Dossier / ప్రవేశించండి ➔</span>
+          </button>
+        </div>
+
+        <!-- CARD 9: CRIME MEETING PRESENTATION SLIDES -->
+        <div class="module-hub-card border-t-4 border-yellow-500 p-6 flex flex-col justify-between">
+          <div>
+            <!-- Top Pill Badge -->
+            <div class="text-center mb-3">
+              <span class="inline-block px-3 py-1 bg-yellow-50 text-amber-800 border border-amber-300 rounded-full text-[11px] font-bold uppercase tracking-wider">
+                📽️ SLIDE DECK • SP CONFERENCE
+              </span>
+            </div>
+
+            <!-- Title En & Te -->
+            <h4 class="text-xl font-extrabold text-slate-900 tracking-tight">Crime Review Presentation Slides</h4>
+            <h5 class="text-sm font-bold text-amber-800 mt-0.5">క్రైమ్ మీటింగ్ స్లైడ్స్ & ప్రొజెక్టర్ ప్రెజెంటేషన్</h5>
+
+            <p class="text-xs text-slate-600 leading-relaxed mt-2.5">
+              High-visibility projector mode designed for SP conference room screens. Formatted slides covering district overview, YoY trends, and sub-division workload.
+            </p>
+
+            <!-- 2x2 Stat Metrics Box -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 grid grid-cols-2 gap-3 my-4">
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Projector Mode</span>
+                <span class="text-lg font-black text-amber-700">Full Screen</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Slide Deck</span>
+                <span class="text-lg font-black text-blue-700">Interactive</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Audience</span>
+                <span class="text-lg font-black text-slate-900">SP & DSPs</span>
+              </div>
+              <div class="metric-stat-box">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">YoY Trends</span>
+                <span class="text-lg font-black text-emerald-700">High Impact</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Button -->
+          <button onclick="switchTab('presentation')"
+            class="w-full py-3 bg-[#b45309] hover:bg-[#d97706] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]">
+            <i class="fa-solid fa-person-chalkboard text-yellow-200"></i>
+            <span>Launch Presentation / ప్రారంభించండి ➔</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ================= MASTER 8 KPI CARDS ================= -->
+      <div class="pt-6">
+        <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-800">
+          <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+            <i class="fa-solid fa-gauge-high text-amber-400"></i>
+            <span>District Crime Review Executive Metrics / జిల్లా ప్రధాన సంఖ్యాత్మక సమీక్ష</span>
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+
+          <!-- Total Reported Cases -->
+          <div class="bg-police-card rounded-xl p-3.5 relative overflow-hidden border border-slate-700">
+            <div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Total Reported</div>
+            <div id="kpi-total-reported" class="text-xl font-black text-white mt-1">68,206</div>
+            <div class="text-[9px] text-slate-400 mt-1 flex items-center gap-1">
+              <i class="fa-solid fa-folder-open text-blue-400"></i>
+              <span>All FIRs</span>
+            </div>
+          </div>
+
+          <!-- Total UI Cases -->
+          <div class="bg-police-card rounded-xl p-3.5 border-l-4 border-blue-500 relative overflow-hidden border-y border-r border-slate-700">
+            <div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Total UI Cases</div>
+            <div id="kpi-total-ui" class="text-xl font-black text-blue-400 mt-1">2,723</div>
+            <div class="text-[9px] text-slate-300 mt-1 flex items-center gap-1">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span>Total Pendency</span>
+            </div>
+          </div>
+
+          <!-- Actual Active UI Cases -->
+          <div class="bg-police-card rounded-xl p-3.5 border-l-4 border-emerald-500 relative overflow-hidden border-y border-r border-slate-700">
+            <div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Actual Active UI</div>
+            <div id="kpi-actual-ui" class="text-xl font-black text-emerald-400 mt-1">2,080</div>
+            <div class="text-[9px] text-slate-300 mt-1 flex items-center gap-1">
+              <i class="fa-solid fa-user-clock text-emerald-400"></i>
+              <span>Active Inquiry</span>
+            </div>
+          </div>
+
+          <!-- CC / PRC / SC No Awaited -->
+          <div class="bg-police-card rounded-xl p-3.5 border-l-4 border-purple-500 relative overflow-hidden border-y border-r border-slate-700">
+            <div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">CC No. Awaited</div>
+            <div id="kpi-cc-awaited" class="text-xl font-black text-purple-400 mt-1">643</div>
+            <div class="text-[9px] text-purple-300 mt-1 flex items-center gap-1">
+              <i class="fa-solid fa-gavel text-purple-400"></i>
+              <span>Court Pendency</span>
+            </div>
+          </div>
+
+          <!-- Long Pending UI Cases (> 1 Year) -->
+          <div class="bg-police-card rounded-xl p-3.5 border-l-4 border-red-500 relative overflow-hidden border-y border-r border-slate-700">
+            <div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Long Pending UI</div>
+            <div id="kpi-long-pending" class="text-xl font-black text-red-400 mt-1">398</div>
+            <div class="text-[9px] text-red-300 mt-1 flex items-center gap-1">
+              <i class="fa-solid fa-triangle-exclamation text-red-400"></i>
+              <span>Critical Focus</span>
+            </div>
+          </div>
+
+          <!-- Grave Cases -->
+          <div class="bg-police-card rounded-xl p-3.5 border-l-4 border-amber-500 relative overflow-hidden border-y border-r border-slate-700">
+            <div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Grave Cases</div>
+            <div id="kpi-grave" class="text-xl font-black text-red-400 mt-1">150</div>
+            <div class="text-[9px] text-slate-300 mt-1">
+              <span>Severe Offences</span>
+            </div>
+          </div>
+
+          <!-- Non-Grave Cases -->
+          <div class="bg-police-card rounded-xl p-3.5 border-l-4 border-sky-500 relative overflow-hidden border-y border-r border-slate-700">
+            <div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Non-Grave</div>
+            <div id="kpi-nongrave" class="text-xl font-black text-sky-400 mt-1">2,447</div>
+            <div class="text-[9px] text-slate-300 mt-1">
+              <span>Regular Cases</span>
+            </div>
+          </div>
+
+          <!-- Disposal Clearance Rate -->
+          <div class="bg-police-card rounded-xl p-3.5 border-l-4 border-teal-500 relative overflow-hidden border-y border-r border-slate-700">
+            <div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Disposal Rate</div>
+            <div id="kpi-clearance" class="text-xl font-black text-teal-300 mt-1">82.4%</div>
+            <div class="text-[9px] text-teal-300 mt-1">
+              <span>District High</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MASTER CRIME MATRIX CARD (DASH BOARD SHEET FROM FILE 1) -->
+      <div class="bg-police-card rounded-xl p-5 border border-slate-700/80 shadow-2xl">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between pb-3 mb-4 border-b border-slate-700 gap-3">
+          <div>
+            <div class="flex items-center gap-2 text-xs text-[#ffd700] uppercase font-bold tracking-wider">
+              <i class="fa-solid fa-table-cells text-amber-400"></i>
+              <span>Official SP Master Crime Matrix (Dash Board Sheet)</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mt-0.5">Master Classification & Gravity Stage Matrix</h3>
+            <p class="text-xs text-slate-300">Directly mirrored from the official "Dash Board" sheet of <code>1. Total UI Cases-Head Wise.xlsx</code></p>
+          </div>
+          <button onclick="exportTableToExcel('mod_master_hw', 'Master_Matrix')" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded text-xs flex items-center gap-1.5 transition shadow">
+            <i class="fa-solid fa-file-excel"></i>
+            <span>Export Matrix (.xlsx)</span>
+          </button>
+        </div>
+
+        <div id="masterMatrixContainer">
+          <!-- Dynamically populated by renderMasterMatrixTable(hw) -->
+        </div>
+      </div>
+
+      <!-- MASTER VISUAL ANALYTICS SECTION -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Chart 1: Crime Category Breakdown -->
+        <div class="bg-police-card rounded-xl p-5 border border-slate-700/80 shadow-xl">
+          <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-700">
+            <div>
+              <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                <i class="fa-solid fa-chart-pie text-pink-400"></i>
+                <span>Crime Categories Breakdown</span>
+              </h3>
+              <p class="text-xs text-slate-400">Bodily, Women, POCSO, Property, Accidents, Cyber Crime</p>
+            </div>
+            <span class="text-xs px-2 py-0.5 bg-slate-800 text-amber-300 rounded border border-slate-700 font-mono">DCRB</span>
+          </div>
+          <div class="h-64">
+            <canvas id="chartMasterCategory"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 2: Sub-Division Load -->
+        <div class="bg-police-card rounded-xl p-5 border border-slate-700/80 shadow-xl">
+          <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-700">
+            <div>
+              <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                <i class="fa-solid fa-chart-column text-blue-400"></i>
+                <span>Sub-Division Caseload Comparison</span>
+              </h3>
+              <p class="text-xs text-slate-400">Srikakulam vs Tekkali vs Kasibugga (Total UI vs Actual UI vs CC Awaited)</p>
+            </div>
+            <span class="text-xs px-2 py-0.5 bg-slate-800 text-blue-300 rounded border border-slate-700 font-mono">3 Sub-Divs</span>
+          </div>
+          <div class="h-64">
+            <canvas id="chartMasterSubDiv"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MASTER INTEGRATED CRIME REVIEW SUB-TABLES (ALL MODULE DATA INTEGRATED) -->
+      <div class="bg-police-card rounded-xl p-5 border border-slate-700/80 shadow-2xl space-y-4">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between pb-3 border-b border-slate-700 gap-3">
+          <div>
+            <div class="flex items-center gap-2 text-xs text-[#ffd700] uppercase font-bold tracking-wider">
+              <i class="fa-solid fa-chart-line text-emerald-400"></i>
+              <span>Integrated Crime Review Tables (సమగ్ర సమీక్ష పట్టికలు)</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mt-0.5">Executive Crime Trends, Pendency Timelines & Station Statements</h3>
+            <p class="text-xs text-slate-300">Click any tab below to switch views with full sorting, live search & Excel export</p>
+          </div>
+        </div>
+
+        <!-- Sub-Table Tab Selector Bar -->
+        <div class="flex flex-wrap gap-2 pb-2 border-b border-slate-700/60">
+          <button id="subTabBtn-crime_stats_pct" onclick="switchMasterSubTable('crime_stats_pct')"
+            class="master-sub-tab-btn px-3 py-1.5 rounded-lg text-xs transition bg-[#d4af37] text-black font-bold flex items-center gap-1.5 shadow">
+            <i class="fa-solid fa-percent"></i>
+            <span>Crime Statistics (YoY %)</span>
+          </button>
+
+          <button id="subTabBtn-last_meeting_status" onclick="switchMasterSubTable('last_meeting_status')"
+            class="master-sub-tab-btn px-3 py-1.5 rounded-lg text-xs transition bg-slate-800 text-slate-300 hover:text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Last Meeting Status</span>
+          </button>
+
+          <button id="subTabBtn-present_status" onclick="switchMasterSubTable('present_status')"
+            class="master-sub-tab-btn px-3 py-1.5 rounded-lg text-xs transition bg-slate-800 text-slate-300 hover:text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-list-check"></i>
+            <span>Present Status</span>
+          </button>
+
+          <button id="subTabBtn-reasons_wise" onclick="switchMasterSubTable('reasons_wise')"
+            class="master-sub-tab-btn px-3 py-1.5 rounded-lg text-xs transition bg-slate-800 text-slate-300 hover:text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-circle-question"></i>
+            <span>Reasons-Wise UI</span>
+          </button>
+
+          <button id="subTabBtn-timewise_actual" onclick="switchMasterSubTable('timewise_actual')"
+            class="master-sub-tab-btn px-3 py-1.5 rounded-lg text-xs transition bg-slate-800 text-slate-300 hover:text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-hourglass-half"></i>
+            <span>Time-Wise (Actual UI)</span>
+          </button>
+
+          <button id="subTabBtn-timewise_total" onclick="switchMasterSubTable('timewise_total')"
+            class="master-sub-tab-btn px-3 py-1.5 rounded-lg text-xs transition bg-slate-800 text-slate-300 hover:text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-clock"></i>
+            <span>Time-Wise (Total UI)</span>
+          </button>
+
+          <button id="subTabBtn-year_reason" onclick="switchMasterSubTable('year_reason')"
+            class="master-sub-tab-btn px-3 py-1.5 rounded-lg text-xs transition bg-slate-800 text-slate-300 hover:text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-timeline"></i>
+            <span>Year & Reason (2015-2025)</span>
+          </button>
+
+          <button id="subTabBtn-ps_comp" onclick="switchMasterSubTable('ps_comp')"
+            class="master-sub-tab-btn px-3 py-1.5 rounded-lg text-xs transition bg-slate-800 text-slate-300 hover:text-white flex items-center gap-1.5">
+            <i class="fa-solid fa-building-shield"></i>
+            <span>PS Comparative</span>
+          </button>
+        </div>
+
+        <!-- Sub-Table Content Container -->
+        <div id="masterSubTableContent">
+          <!-- Dynamically populated by renderMasterSubTable() -->
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= DEDICATED MODULE 0: MASTER HEAD-WISE (17 SHEETS) ================= -->
+    <section id="tab-mod_master_hw" class="app-section hidden space-y-6">
+      <!-- Dynamically populated by renderModule('mod_master_hw') -->
+    </section>
+
+    <!-- ================= DEDICATED MODULE 1: 1. TOTAL REPORTED CASES (12 SHEETS) ================= -->
+    <section id="tab-mod_1_reported" class="app-section hidden space-y-6">
+      <!-- Dynamically populated by renderModule('mod_1_reported') -->
+    </section>
+
+    <!-- ================= DEDICATED MODULE 1A: 1A. TOTAL UI CASES (22 SHEETS) ================= -->
+    <section id="tab-mod_1a_ui" class="app-section hidden space-y-6">
+      <!-- Dynamically populated by renderModule('mod_1a_ui') -->
+    </section>
+
+    <!-- ================= DEDICATED MODULE 1B: 1B. UI CASES COMPLIANCE (15 SHEETS) ================= -->
+    <section id="tab-mod_1b_compliance" class="app-section hidden space-y-6">
+      <!-- Dynamically populated by renderModule('mod_1b_compliance') -->
+    </section>
+
+    <!-- ================= DEDICATED MODULE 2: 2. LONG PENDING REPORTED CASES (8 SHEETS) ================= -->
+    <section id="tab-mod_2_long_reported" class="app-section hidden space-y-6">
+      <!-- Dynamically populated by renderModule('mod_2_long_reported') -->
+    </section>
+
+    <!-- ================= DEDICATED MODULE 2A: 2A. LONG PENDING UI CASES (22 SHEETS) ================= -->
+    <section id="tab-mod_2a_long_ui" class="app-section hidden space-y-6">
+      <!-- Dynamically populated by renderModule('mod_2a_long_ui') -->
+    </section>
+
+    <!-- ================= DEDICATED MODULE 4: 4. HEAD WISE ABSTRACT (15 SHEETS) ================= -->
+    <section id="tab-mod_4_abstract" class="app-section hidden space-y-6">
+      <!-- Dynamically populated by renderModule('mod_4_abstract') -->
+    </section>
+
+    <!-- ================= TAB: POLICE STATION 360° DOSSIER ================= -->
+    <section id="tab-ps_dossier" class="app-section hidden space-y-6">
+
+      <!-- PS Selector Bar -->
+      <div class="bg-police-card rounded-xl p-5 border border-slate-700/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 text-xs text-[#ffd700] uppercase font-bold tracking-wider">
+            <i class="fa-solid fa-building-shield"></i>
+            <span>District Station Roster</span>
+          </div>
+          <h2 class="text-xl font-bold text-white mt-0.5">Police Station 360° Comprehensive Dossier</h2>
+          <p class="text-xs text-slate-300">Select any of the 36 Police Stations in Srikakulam District for instant SP review breakdown</p>
+        </div>
+
+        <div class="flex items-center gap-3 w-full md:w-auto">
+          <button onclick="switchTab('dashboard')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-[#ffd700] rounded-lg text-xs font-semibold flex items-center gap-1.5 border border-slate-600 transition shadow">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>← Modules Hub</span>
+          </button>
+          <select id="dossierPSSelect" onchange="loadStationProfile(this.value)"
+            class="bg-[#081220] border-2 border-[#ffd700]/70 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-[#ffd700] font-semibold w-full md:w-72">
             <!-- Dynamically populated -->
           </select>
-          <button onclick="togglePresentationMode()" class="px-4 py-2 bg-[#ffd700] hover:bg-amber-400 text-black font-bold text-xs rounded-lg shadow flex items-center gap-2">
-            <i class="fa-solid fa-expand"></i> Fullscreen Projector View
-          </button>
         </div>
       </div>
 
-      <!-- Slide View Area -->
-      <div id="presentationSlideArea" class="bg-[#0b1a33] border border-slate-700 rounded-2xl p-8 shadow-2xl">
-        <!-- Rendered dynamically -->
+      <!-- Station Profile Card -->
+      <div id="psProfileCard">
+        <!-- Dynamically populated by loadStationProfile(psName) -->
       </div>
 
     </section>
 
-    <!-- ================= TAB 8: EXPORT & REPORT CENTER ================= -->
-    <section id="tab-export_hub" class="hidden space-y-6">
-      
-      <div class="bg-police-card rounded-xl p-5">
-        <h2 class="text-xl font-bold text-white">Reports & Data Export Center</h2>
-        <p class="text-xs text-slate-300">Generate on-demand Excel spreadsheets, CSV data extracts, or printable meeting dossiers</p>
+    <!-- ================= TAB: CRIME MEETING PRESENTATION SLIDES ================= -->
+    <section id="tab-presentation" class="app-section hidden space-y-6">
+
+      <div class="bg-police-card rounded-xl p-5 border border-slate-700/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 text-xs text-[#ffd700] uppercase font-bold tracking-wider">
+            <i class="fa-solid fa-person-chalkboard"></i>
+            <span>Projector & Screen Presentation Mode</span>
+          </div>
+          <h2 class="text-xl font-bold text-white mt-0.5">Superintendent of Police Crime Review Slide Deck</h2>
+          <p class="text-xs text-slate-300">Clean, high-visibility slides optimized for large screen conference projections</p>
+        </div>
+
+        <!-- Slide Controls -->
+        <div class="flex items-center gap-3">
+          <button onclick="switchTab('dashboard')" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-[#ffd700] border border-slate-600 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-arrow-left"></i> Modules Hub
+          </button>
+          <button onclick="prevSlide()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-lg text-xs font-bold text-white flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-chevron-left"></i> Previous
+          </button>
+          <span id="slideCount" class="text-xs font-mono font-bold px-3 py-2 bg-[#081220] border border-slate-600 rounded-lg text-[#ffd700]">
+            Slide 1 of 3
+          </span>
+          <button onclick="nextSlide()" class="px-3.5 py-2 bg-[#d4af37] hover:bg-[#c09d2e] rounded-lg text-xs font-bold text-black flex items-center gap-1.5 transition shadow">
+            Next <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Export 1: All Total UI Cases -->
-        <div class="bg-police-card rounded-xl p-6 border-t-4 border-blue-500 flex flex-col justify-between">
-          <div>
-            <div class="text-xs font-bold uppercase text-blue-400 mb-1">Point-1 & 1A Extract</div>
-            <h3 class="text-base font-bold text-white mb-2">Total UI Cases Spreadsheet</h3>
-            <p class="text-xs text-slate-300 mb-4">Complete database of all 2,597 Under Investigation cases with FIRs, dates, sections, IOs, reasons, and timelines.</p>
-          </div>
-          <button onclick="exportCurrentViewToExcel()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-lg shadow flex items-center justify-center gap-2">
-            <i class="fa-solid fa-file-excel"></i> Download Excel (.xlsx)
-          </button>
+      <!-- Slide Card -->
+      <div class="bg-police-card rounded-2xl border-2 border-[#d4af37]/50 shadow-2xl overflow-hidden min-h-[480px]">
+        <div id="slideContent">
+          <!-- Dynamically populated by renderPresentationSlide() -->
         </div>
-
-        <!-- Export 2: Long Pending UI Cases -->
-        <div class="bg-police-card rounded-xl p-6 border-t-4 border-red-500 flex flex-col justify-between">
-          <div>
-            <div class="text-xs font-bold uppercase text-red-400 mb-1">Point-2 & 2A Extract</div>
-            <h3 class="text-base font-bold text-white mb-2">Long Pending Priority Cases</h3>
-            <p class="text-xs text-slate-300 mb-4">The 397 critical cases pending over 1 year to 10+ years, ordered by days pending with reasons and station tags.</p>
-          </div>
-          <button onclick="exportLongPendingToExcel()" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white font-bold text-xs rounded-lg shadow flex items-center justify-center gap-2">
-            <i class="fa-solid fa-file-excel"></i> Download Excel (.xlsx)
-          </button>
-        </div>
-
-        <!-- Export 3: Crime Statistics 2024-2026 -->
-        <div class="bg-police-card rounded-xl p-6 border-t-4 border-amber-500 flex flex-col justify-between">
-          <div>
-            <div class="text-xs font-bold uppercase text-amber-400 mb-1">File 4 Abstract</div>
-            <h3 class="text-base font-bold text-white mb-2">Crime Trends Abstract (2024-26)</h3>
-            <p class="text-xs text-slate-300 mb-4">All-head crime statistics comparison table showing 2024, 2025, and 2026 figures with percentage variance.</p>
-          </div>
-          <button onclick="exportCrimeStatsToExcel()" class="w-full py-2.5 bg-amber-600 hover:bg-amber-500 text-black font-bold text-xs rounded-lg shadow flex items-center justify-center gap-2">
-            <i class="fa-solid fa-file-excel"></i> Download Excel (.xlsx)
-          </button>
-        </div>
-
       </div>
 
     </section>
 
   </main>
-
-  <!-- ================= CASE DETAIL MODAL ================= -->
-  <div id="caseModal" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-    <div class="max-w-2xl w-full bg-[#0c1e3d] border-2 border-[#d4af37] rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-      
-      <!-- Modal Header -->
-      <div class="bg-[#081220] px-6 py-4 border-b border-slate-700 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <img src="assets/ap_police_logo.svg" alt="Police" class="w-9 h-9">
-          <div>
-            <h3 id="modalFIR" class="text-lg font-bold text-white">FIR Details</h3>
-            <p id="modalPS" class="text-xs text-amber-300">Police Station</p>
-          </div>
-        </div>
-        <button onclick="closeCaseModal()" class="text-slate-400 hover:text-white text-lg p-1">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <!-- Modal Body -->
-      <div class="p-6 overflow-y-auto space-y-4 text-xs">
-        
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 bg-[#081220] p-3 rounded-lg border border-slate-700">
-          <div>
-            <span class="text-slate-400 block text-[10px] uppercase">Crime Head</span>
-            <span id="modalCrimeHead" class="font-bold text-white text-sm">-</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block text-[10px] uppercase">Gravity</span>
-            <span id="modalGravity" class="font-bold">-</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block text-[10px] uppercase">FIR Date</span>
-            <span id="modalFIRDate" class="font-bold text-white">-</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block text-[10px] uppercase">Days Pending</span>
-            <span id="modalDaysPending" class="font-bold text-red-400 text-sm">-</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block text-[10px] uppercase">Timeline</span>
-            <span id="modalTimeline" class="font-bold text-amber-300">-</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block text-[10px] uppercase">Investigation Officer</span>
-            <span id="modalIO" class="font-bold text-white">-</span>
-          </div>
-        </div>
-
-        <div>
-          <span class="text-slate-400 block text-[10px] uppercase mb-1">Sections of Law</span>
-          <div id="modalSecOfLaw" class="p-2.5 bg-[#081220] rounded border border-slate-700 text-amber-200 font-mono text-xs">
-            -
-          </div>
-        </div>
-
-        <div>
-          <span class="text-slate-400 block text-[10px] uppercase mb-1">Reason for Pendency (UI)</span>
-          <div id="modalReason" class="p-2.5 bg-amber-950/40 rounded border border-amber-800 text-amber-300 font-semibold text-xs">
-            -
-          </div>
-        </div>
-
-        <div>
-          <span class="text-slate-400 block text-[10px] uppercase mb-1">Brief Facts of the Case</span>
-          <div id="modalBrief" class="p-3 bg-[#081220] rounded border border-slate-700 text-slate-200 leading-relaxed max-h-48 overflow-y-auto whitespace-pre-wrap">
-            No brief available.
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="bg-[#081220] px-6 py-3 border-t border-slate-700 flex items-center justify-between">
-        <span class="text-[11px] text-slate-400">Srikakulam District Police Records</span>
-        <button onclick="closeCaseModal()" class="px-4 py-1.5 bg-slate-700 hover:bg-slate-600 text-white text-xs rounded-lg">
-          Close
-        </button>
-      </div>
-
-    </div>
-  </div>
 
   <!-- ================= FOOTER ================= -->
   <footer class="bg-[#071326] border-t border-slate-800 py-3 mt-auto text-center text-xs text-slate-400">
@@ -980,7 +1075,131 @@
     </div>
   </footer>
 
-  <!-- Include Application Data Bundle -->
+  <!-- Include Application Data Modules -->
+  
+  <!-- ================= CASE DRILL-DOWN TABULAR MODAL ================= -->
+  <div id="caseDrillDownModal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-[#0b1b36] border-2 border-[#d4af37]/70 rounded-2xl w-full max-w-6xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden animate-fadeIn">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 bg-gradient-to-r from-[#0a182e] via-[#10274f] to-[#0a182e] border-b border-slate-700 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-[#ffd700] text-lg shadow">
+            <i class="fa-solid fa-list-check"></i>
+          </div>
+          <div>
+            <h3 id="drillDownModalTitle" class="text-base sm:text-lg font-black text-white flex items-center gap-2">
+              <span>Case Records Tabular View</span>
+              <span id="drillDownCasesCount" class="px-2 py-0.5 rounded-full bg-amber-500 text-slate-950 text-xs font-bold font-mono">0 Cases</span>
+            </h3>
+            <p id="drillDownModalSubtitle" class="text-xs text-[#ffd700] font-semibold mt-0.5">
+              ఎంచుకున్న సంఖ్యకు సంబంధించిన కేసుల పూర్తి వివరాలు (Full Case Details)
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <!-- Search inside drilldown -->
+          <div class="relative w-48 sm:w-64">
+            <span class="absolute inset-y-0 left-0 pl-2.5 flex items-center text-slate-400">
+              <i class="fa-solid fa-magnifying-glass text-xs"></i>
+            </span>
+            <input type="text" id="drillDownSearch" placeholder="Search these cases..."
+              oninput="handleDrillDownSearch(this.value)"
+              class="w-full pl-8 pr-3 py-1.5 bg-[#071324] border border-slate-600 rounded-lg text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400">
+          </div>
+
+          <!-- Export Button -->
+          <button onclick="exportDrillDownCases()"
+            class="px-3 py-1.5 bg-emerald-800 hover:bg-emerald-700 text-emerald-100 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition shadow">
+            <i class="fa-solid fa-file-excel"></i>
+            <span class="hidden sm:inline">Export</span>
+          </button>
+
+          <!-- Close Button -->
+          <button onclick="closeDrillDownModal()"
+            class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-rose-900 hover:text-white text-slate-300 border border-slate-600 flex items-center justify-center transition">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Active Criteria Badges Bar -->
+      <div id="drillDownCriteriaBar" class="px-4 py-2 bg-[#08152b] border-b border-slate-700/80 flex flex-wrap gap-2 items-center text-xs text-slate-300">
+        <!-- Injected dynamically -->
+      </div>
+
+      <!-- Modal Table Body with Text Wrap & Cement White Background -->
+      <div class="flex-1 overflow-x-auto overflow-y-auto p-3 sm:p-4 max-h-[60vh] bg-[#f8fafc]">
+        <table class="w-full text-left text-xs border-collapse bg-[#f8fafc] border border-slate-300">
+          <thead class="sticky top-0 z-10">
+            <tr class="bg-[#0f244a] text-[#ffd700] uppercase tracking-wider font-bold border-b-2 border-amber-400 shadow">
+              <th class="px-3 py-2.5 w-12 text-center whitespace-normal break-words bg-[#0f244a] border-r border-slate-700">#</th>
+              <th class="px-3 py-2.5 whitespace-normal break-words leading-tight bg-[#0f244a] border-r border-slate-700 min-w-[130px]">Police Station</th>
+              <th class="px-3 py-2.5 whitespace-normal break-words leading-tight bg-[#0f244a] border-r border-slate-700 min-w-[90px]">FIR NO</th>
+              <th class="px-3 py-2.5 whitespace-normal break-words leading-tight bg-[#0f244a] border-r border-slate-700 min-w-[95px]">FIR DT</th>
+              <th class="px-3 py-2.5 whitespace-normal break-words leading-tight bg-[#0f244a] border-r border-slate-700 min-w-[130px]">Crime Head</th>
+              <th class="px-3 py-2.5 whitespace-normal break-words leading-tight bg-[#0f244a] border-r border-slate-700 min-w-[160px] max-w-sm">Acts & Section</th>
+              <th class="px-3 py-2.5 whitespace-normal break-words leading-tight bg-[#0f244a] border-r border-slate-700 min-w-[80px]">Stage</th>
+              <th class="px-3 py-2.5 whitespace-normal break-words leading-tight bg-[#0f244a] border-r border-slate-700 min-w-[150px] max-w-xs">Reason for UI</th>
+              <th class="px-3 py-2.5 whitespace-normal break-words leading-tight bg-[#0f244a] min-w-[280px] max-w-md">Brief Facts</th>
+            </tr>
+          </thead>
+          <tbody id="drillDownTableBody" class="divide-y divide-slate-200 text-slate-900 font-sans text-xs bg-[#f8fafc]">
+            <!-- Injected dynamically -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Modal Footer Pagination -->
+      <div class="p-3 bg-[#0a182e] border-t border-slate-700 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-300 gap-3">
+        <div id="drillDownPaginationInfo">
+          <!-- Injected dynamically -->
+        </div>
+        <div id="drillDownPaginationControls" class="flex items-center space-x-1">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= BRIEF FACTS DETAIL MODAL ================= -->
+  <div id="briefDetailModal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-[#0b1b36] border-2 border-amber-500/80 rounded-2xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden animate-fadeIn">
+      <div class="p-4 bg-gradient-to-r from-[#0a182e] to-[#10274f] border-b border-slate-700 flex items-center justify-between">
+        <div class="flex items-center gap-2 text-white">
+          <i class="fa-solid fa-file-lines text-amber-400 text-lg"></i>
+          <div>
+            <h4 class="text-sm font-bold text-white">Full Brief Facts (కేసు పూర్తి వివరణ)</h4>
+            <p id="briefModalCaseRef" class="text-xs text-amber-300 font-mono"></p>
+          </div>
+        </div>
+        <button onclick="closeBriefModal()" class="w-7 h-7 rounded-lg bg-slate-800 hover:bg-rose-900 text-slate-300 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+      <div class="p-5 overflow-y-auto text-xs sm:text-sm text-slate-200 leading-relaxed font-sans whitespace-pre-wrap break-words" id="briefModalContent">
+      </div>
+      <div class="p-3 bg-[#0a182e] border-t border-slate-700 flex items-center justify-between">
+        <button onclick="copyBriefText()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-[#ffd700] rounded text-xs font-semibold flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-copy"></i>
+          <span id="copyBriefBtnText">Copy Brief Text</span>
+        </button>
+        <button onclick="closeBriefModal()" class="px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded text-xs transition">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data/master_headwise.js"></script>
+  <script src="data/module_1_reported.js"></script>
+  <script src="data/module_1a_ui.js"></script>
+  <script src="data/module_1b_compliance.js"></script>
+  <script src="data/module_2_long_reported.js"></script>
+  <script src="data/module_2a_long_ui.js"></script>
+  <script src="data/module_4_abstract.js"></script>
+  <!-- Legacy data bundle -->
   <script src="data/data_bundle.js"></script>
   <!-- Main Application Script -->
   <script src="app.js"></script>

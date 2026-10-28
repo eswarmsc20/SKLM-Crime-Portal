@@ -154,3 +154,88 @@ body.presentation-mode .container {
     background-color: #f3f4f6 !important;
   }
 }
+
+/* ================= DEPARTMENT MODULE HUB CARDS (MATCHING USER COMMAND UI) ================= */
+.module-hub-card {
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  transition: all 0.22s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.module-hub-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 24px -4px rgba(0, 0, 0, 0.16), 0 8px 10px -4px rgba(0, 0, 0, 0.08);
+  border-color: #cbd5e1;
+}
+
+.metric-stat-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.65rem;
+  padding: 0.65rem 0.85rem;
+}
+
+
+/* Text Wrap & Column Enhancements */
+.col-brief-wrap {
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  min-width: 280px;
+  max-width: 520px;
+  line-height: 1.5;
+}
+
+.col-reason-wrap {
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  min-width: 180px;
+  max-width: 340px;
+  line-height: 1.4;
+}
+
+.col-acts-wrap {
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  min-width: 150px;
+  max-width: 360px;
+  line-height: 1.35;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeInModal 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Cement White Professional Table Styling */
+.table-cement-white {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.table-cement-white th {
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  line-height: 1.35 !important;
+}
+
+.table-cement-white td {
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+}
